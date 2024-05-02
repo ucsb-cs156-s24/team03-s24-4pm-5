@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s24/team03-s24-4pm-5
 owner: ucsb-cs156-s24
 repo_name: team03-s24-4pm-5
-pull_requests: [{"author":{"id":"U_kgDOBdHhNQ","is_bot":false,"login":"GarvinYoung","name":""},"headRefName":"GY-Articles-CopyCRUD","number":63,"title":"Articles Copying CRUD operations from Team02","url":"https://github.com/ucsb-cs156-s24/team03-s24-4pm-5/pull/63"}]
+pull_requests: [{"author":{"id":"U_kgDOBdHhNQ","is_bot":false,"login":"GarvinYoung","name":""},"headRefName":"GY-Articles-Fixtures","number":64,"title":"Added Fixtures for Articles","url":"https://github.com/ucsb-cs156-s24/team03-s24-4pm-5/pull/64"},{"author":{"id":"U_kgDOBdHhNQ","is_bot":false,"login":"GarvinYoung","name":""},"headRefName":"GY-Articles-CopyCRUD","number":63,"title":"Articles Copying CRUD operations from Team02","url":"https://github.com/ucsb-cs156-s24/team03-s24-4pm-5/pull/63"}]
