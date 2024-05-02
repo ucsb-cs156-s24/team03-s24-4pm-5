@@ -1,4 +1,4 @@
-const ucsbDatesFixtures = {
+const articlesFixtures = {
     oneArticle: {
         "id": 1,
         "title": "how to cure cancer",
