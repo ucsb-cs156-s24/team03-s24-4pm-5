@@ -1,6 +1,6 @@
 import { render, waitFor, fireEvent, screen } from "@testing-library/react";
 import RecommendationRequestForm from "main/components/RecommendationRequest/RecommendationRequestForm";
-import { recommendationRequestFixtures, ucsbDatesFixtures } from "fixtures/recommendationRequestFixtures";
+import { recommendationRequestFixtures} from "fixtures/recommendationRequestFixtures";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const mockedNavigate = jest.fn();
@@ -11,13 +11,13 @@ jest.mock('react-router-dom', () => ({
 }));
 
 
-describe("RecommendatonRequestForm tests", () => {
+describe("RecommendationRequestForm tests", () => {
 
     test("renders correctly", async () => {
 
         render(
             <Router  >
-                <RecommendatonRequestForm />
+                <RecommendationRequestForm />
             </Router>
         );
         await screen.findByText(/Requester Email/);
@@ -31,12 +31,12 @@ describe("RecommendatonRequestForm tests", () => {
 
         render(
             <Router  >
-                <RecommendatonRequestForm initialContents={recommendationRequestFixtures.oneRecommendationRequest} />
+                <RecommendationRequestForm initialContents={recommendationRequestFixtures.oneRecommendationRequest} />
             </Router>
         );
-        await screen.findByTestId(/RecommendatonRequestForm-id/);
+        await screen.findByTestId(/RecommendationRequestForm-id/);
         expect(screen.getByText(/Id/)).toBeInTheDocument();
-        expect(screen.getByTestId(/RecommendatonRequestForm-id/)).toHaveValue("1");
+        expect(screen.getByTestId(/RecommendationRequestForm-id/)).toHaveValue("1");
     });
 
 
@@ -44,17 +44,17 @@ describe("RecommendatonRequestForm tests", () => {
 
         render(
             <Router  >
-                <RecommendatonRequestForm />
+                <RecommendationRequestForm />
             </Router>
         );
-        await screen.findByTestId("RecommendatonRequestForm-requesterEmail");
-        const requesterEmailField = screen.getByTestId("UCSBDateForm-requesterEmail");
-        const professorEmailField = screen.getByTestId("UCSBDateForm-professorEmail");
-        const explanationField = screen.getByTestId("UCSBDateForm-explanation");
-        const dateRequestedField = screen.getByTestId("UCSBDateForm-dateRequested");
-        const dateNeededField = screen.getByTestId("UCSBDateForm-dateNeeded");
-        const doneField = screen.getByTestId("UCSBDateForm-done");
-        const submitButton = screen.getByTestId("UCSBDateForm-submit");
+        await screen.findByTestId("RecommendationRequestForm-requesterEmail");
+        const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
+        const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
+        const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
+        const dateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
+        const dateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
+        const doneField = screen.getByTestId("RecommendationRequestForm-done");
+        const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
         fireEvent.change(requesterEmailField, { target: { value: 'bad-input' } });
         fireEvent.change(professorEmailField, { target: { value: 'bad-input' } });
@@ -64,7 +64,7 @@ describe("RecommendatonRequestForm tests", () => {
         fireEvent.change(doneField, { target: { value: 'bad-input' } });
         fireEvent.click(submitButton);
 
-        await screen.findByText(/Requester Email is required./);
+        await screen.findByText(/DateRequested is required./);
     });
 
 
@@ -72,11 +72,11 @@ describe("RecommendatonRequestForm tests", () => {
 
         render(
             <Router  >
-                <RecommendatonRequestForm />
+                <RecommendationRequestForm />
             </Router>
         );
-        await screen.findByTestId("RecommendatonRequestForm-submit");
-        const submitButton = screen.getByTestId("RecommendatonRequestForm-submit");
+        await screen.findByTestId("RecommendationRequestForm-submit");
+        const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
         fireEvent.click(submitButton);
 
@@ -97,18 +97,18 @@ describe("RecommendatonRequestForm tests", () => {
 
         render(
             <Router  >
-                <RecommendatonRequestForm submitAction={mockSubmitAction} />
+                <RecommendationRequestForm submitAction={mockSubmitAction} />
             </Router>
         );
-        await screen.findByTestId("RecommendatonRequestForm-requesterEmail");
+        await screen.findByTestId("RecommendationRequestForm-requesterEmail");
 
-        const requesterEmailField = screen.getByTestId("UCSBDateForm-requesterEmail");
-        const professorEmailField = screen.getByTestId("UCSBDateForm-professorEmail");
-        const explanationField = screen.getByTestId("UCSBDateForm-explanation");
-        const dateRequestedField = screen.getByTestId("UCSBDateForm-dateRequested");
-        const dateNeededField = screen.getByTestId("UCSBDateForm-dateNeeded");
-        const doneField = screen.getByTestId("UCSBDateForm-done");
-        const submitButton = screen.getByTestId("UCSBDateForm-submit");
+        const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
+        const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
+        const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
+        const dateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
+        const dateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
+        const doneField = screen.getByTestId("RecommendationRequestForm-done");
+        const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
         fireEvent.change(requesterEmailField, { target: { value: 'student@ucsb.edu' } });
         fireEvent.change(professorEmailField, { target: { value: 'testprof@ucsb.edu' } });
@@ -131,11 +131,11 @@ describe("RecommendatonRequestForm tests", () => {
 
         render(
             <Router  >
-                <RecommendatonRequestForm />
+                <RecommendationRequestForm />
             </Router>
         );
-        await screen.findByTestId("RecommendatonRequestForm-cancel");
-        const cancelButton = screen.getByTestId("RecommendatonRequestForm-cancel");
+        await screen.findByTestId("RecommendationRequestForm-cancel");
+        const cancelButton = screen.getByTestId("RecommendationRequestForm-cancel");
 
         fireEvent.click(cancelButton);
 

@@ -104,7 +104,7 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                     <Form.Group className="mb-3" >
                         <Form.Label htmlFor="dateRequested">Date Requested</Form.Label>
                         <Form.Control
-                            data-testid="UCSBDateForm-dateRequested"
+                            data-testid="RecommendationRequestForm-dateRequested"
                             id="dateRequested"
                             type="datetime-local"
                             isInvalid={Boolean(errors.dateRequested)}
@@ -119,7 +119,7 @@ function RecommendationRequestForm({ initialContents, submitAction, buttonLabel 
                     <Form.Group className="mb-3" >
                         <Form.Label htmlFor="dateNeeded">Date Needed</Form.Label>
                         <Form.Control
-                            data-testid="UCSBDateForm-dateNeeded"
+                            data-testid="RecommendationRequestForm-dateNeeded"
                             id="dateNeeded"
                             type="datetime-local"
                             isInvalid={Boolean(errors.dateNeeded)}
