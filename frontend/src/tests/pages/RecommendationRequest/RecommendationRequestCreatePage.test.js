@@ -58,8 +58,8 @@ describe("RecommendationRequestCreatePage tests", () => {
             requesterEmail: "requestTest@ucsb.edu",
             professorEmail: "profTest@ucsb.edu",
             explanation: "Test explanation",
-            dateRequested: "2022-02-02T00:00:00",
-            dateNeeded: "2022-03-02T00:00:00",
+            dateRequested: "2022-02-02T00:00",
+            dateNeeded: "2022-03-02T00:00",
             done: "false"
         };
 
@@ -88,8 +88,8 @@ describe("RecommendationRequestCreatePage tests", () => {
         fireEvent.change(requesterEmailField, { target: { value: 'requestTest@ucsb.edu' } });
         fireEvent.change(professorEmailField, { target: { value: 'profTest@ucsb.edu' } });
         fireEvent.change(explanationField, { target: { value: 'Test explanation' } });
-        fireEvent.change(dateRequestedField, { target: { value: '2022-02-02T00:00:00' } });
-        fireEvent.change(dateNeededField, { target: { value: '2022-03-02T00:00:00' } });
+        fireEvent.change(dateRequestedField, { target: { value: '2022-02-02T00:00' } });
+        fireEvent.change(dateNeededField, { target: { value: '2022-03-02T00:00' } });
         fireEvent.change(doneField, { target: { value: 'false' } });
 
         expect(submitButton).toBeInTheDocument();
@@ -103,8 +103,8 @@ describe("RecommendationRequestCreatePage tests", () => {
             "requesterEmail": "requestTest@ucsb.edu",
             "professorEmail": "profTest@ucsb.edu",
             "explanation": "Test explanation",
-            "dateRequested": "2022-02-02T00:00:00",
-            "dateNeeded": "2022-03-02T00:00:00",
+            "dateRequested": "2022-02-02T00:00",
+            "dateNeeded": "2022-03-02T00:00",
             "done": "false"
         });
 
