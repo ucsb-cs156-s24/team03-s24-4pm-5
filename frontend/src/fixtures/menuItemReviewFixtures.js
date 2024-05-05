@@ -5,7 +5,7 @@ const menuItemReviewFixtures = {
         "reviewerEmail": "stevenle@ucsb.edu",
         "stars": 1,
         "dateReviewed": "2022-04-20T12:00:00",
-        "comments": "This ain't it. Y'all need a reality check."
+        "comments": "Horrible"
     },
     threeReviews: [
         {
@@ -30,7 +30,7 @@ const menuItemReviewFixtures = {
             "reviewerEmail": "stevenle@ucsb.edu",
             "stars": 1,
             "dateReviewed": "2022-04-20T12:00:00",
-            "comments": "This ain't it. Y'all need a reality check."
+            "comments": "Horrible"
         }
     ]
 };
