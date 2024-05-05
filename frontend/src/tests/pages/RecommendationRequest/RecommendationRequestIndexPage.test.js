@@ -124,7 +124,7 @@ describe("RecommendationRequestIndexPage tests", () => {
         setupAdminUser();
         const queryClient = new QueryClient();
         axiosMock.onGet("/api/RecommendationRequest/all").reply(200, recommendationRequestFixtures.threeRecommendationRequests);
-        axiosMock.onDelete("/api/RecommendationRequest").reply(200, "RecommendationRequest with id 2 was deleted");
+        axiosMock.onDelete("/api/RecommendationRequest").reply(200, "RecommendationRequest with id 1 was deleted");
 
         // act
         render(
@@ -138,7 +138,7 @@ describe("RecommendationRequestIndexPage tests", () => {
         // assert
         await waitFor(() => { expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toBeInTheDocument(); });
 
-        expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
+        expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
 
         const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
         expect(deleteButton).toBeInTheDocument();
@@ -147,7 +147,7 @@ describe("RecommendationRequestIndexPage tests", () => {
         fireEvent.click(deleteButton);
 
         // assert
-        await waitFor(() => { expect(mockToast).toBeCalledWith("RecommendationRequest with id 2 was deleted") });
+        await waitFor(() => { expect(mockToast).toBeCalledWith("RecommendationRequest with id 1 was deleted") });
 
     });
 
