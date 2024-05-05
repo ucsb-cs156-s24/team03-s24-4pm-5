@@ -2,14 +2,11 @@ import React from "react";
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 
 import { useBackendMutation } from "main/utils/useBackend";
-import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/restaurantUtils";
+import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/MenuItemReviewUtils";
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function MenuItemReviewTable({
-    reviews,
-    currentUser,
-    testIdPrefix = "MenuItemReviewTable" }) {
+export default function MenuItemReviewTable({ reviews, currentUser}) {
 
     const navigate = useNavigate();
 
@@ -19,15 +16,14 @@ export default function MenuItemReviewTable({
 
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
-        { onSuccess: onDeleteSuccess },
-        ["/api/menuItemReviews/all"]
+        {}
     );
 
-    const deleteCallback = async (cell) => { deleteMutation.mutate(cell); };
+    const deleteCallback = async (cell) => {}
 
     const columns = [
         {
-            Header: 'ID',
+            Header: 'id',
             accessor: 'id', // accessor is the "key" in the data
         },
         {
@@ -53,13 +49,13 @@ export default function MenuItemReviewTable({
     ];
 
     if (hasRole(currentUser, "ROLE_ADMIN")) {
-        columns.push(ButtonColumn("Edit", "primary", editCallback, testIdPrefix));
-        columns.push(ButtonColumn("Delete", "danger", deleteCallback, testIdPrefix));
+        columns.push(ButtonColumn("Edit", "primary", editCallback, "MenuItemReviewTable"));
+        columns.push(ButtonColumn("Delete", "danger", deleteCallback, "MenuItemReviewTable"));
     } 
 
     return <OurTable
         data={reviews}
         columns={columns}
-        testid={testIdPrefix}
+        testid={"MenuItemReviewTable"}
     />;
 };
