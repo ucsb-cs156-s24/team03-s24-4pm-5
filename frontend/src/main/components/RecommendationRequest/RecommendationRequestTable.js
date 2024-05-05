@@ -54,8 +54,8 @@ export default function RecommendationRequestTable({ requests, currentUser }) {
         },
         {
             Header: 'Done',
-            accessor: d => d.done ? "true" : "false",
-        }
+            accessor: (row, _rowIndex) => String(row.done)
+        },
     ];
 
     if (hasRole(currentUser, "ROLE_ADMIN")) {
