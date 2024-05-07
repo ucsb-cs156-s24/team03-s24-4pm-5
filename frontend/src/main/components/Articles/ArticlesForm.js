@@ -84,7 +84,7 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
 
 
             <Row>
-                <Col>
+            <Col>
                     <Form.Group className="mb-3" >
                         <Form.Label htmlFor="explanation">Explanation</Form.Label>
                         <Form.Control
@@ -93,7 +93,7 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
                             type="text"
                             isInvalid={Boolean(errors.explanation)}
                             {...register("explanation", {
-                                required: "Explanation is required."
+                                required: "Explanation is required.",
                             })}
                         />
                         <Form.Control.Feedback type="invalid">

@@ -46,10 +46,18 @@ describe("Articles tests", () => {
                 <ArticlesForm />
             </Router>
         );
-        await screen.findByTestId("ArticlesForm-dateAdded");
+        await screen.findByTestId("ArticlesForm-title");
+        const titleField = screen.getByTestId("ArticlesForm-title");
+        const urlField = screen.getByTestId("ArticlesForm-url");
+        const explanationField = screen.getByTestId("ArticlesForm-explanation");
+        const emailField = screen.getByTestId("ArticlesForm-email");
         const dateAddedField = screen.getByTestId("ArticlesForm-dateAdded");
         const submitButton = screen.getByTestId("ArticlesForm-submit");
 
+        fireEvent.change(titleField, { target: { value: 'bad-input' } });
+        fireEvent.change(urlField, { target: { value: 'bad-input' } });
+        fireEvent.change(explanationField, { target: { value: 'bad-input' } });
+        fireEvent.change(emailField, { target: { value: 'bad-input' } });
         fireEvent.change(dateAddedField, { target: { value: 'bad-input' } });
         fireEvent.click(submitButton);
 
@@ -70,7 +78,9 @@ describe("Articles tests", () => {
 
         await screen.findByText(/Title is required./);
         expect(screen.getByText(/Url is required./)).toBeInTheDocument();
-        expect(screen.getByText(/Email of Author is required./)).toBeInTheDocument();
+        expect(screen.getByText(/Explanation is required./)).toBeInTheDocument()
+        expect(screen.getByText(/Email of Author is required./)).toBeInTheDocument();;
+        expect(screen.getByText(/Date Added is required./)).toBeInTheDocument();
 
     });
 
@@ -101,7 +111,8 @@ describe("Articles tests", () => {
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
-        expect(screen.queryByText(/dateAdded must be in ISO format/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Date Added is required./)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Explanation is required./)).not.toBeInTheDocument();
 
     });
 
