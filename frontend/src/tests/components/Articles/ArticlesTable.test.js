@@ -203,3 +203,4 @@ describe("ArticlesTable tests", () => {
     fireEvent.click(deleteButton);
   });
 });
+
