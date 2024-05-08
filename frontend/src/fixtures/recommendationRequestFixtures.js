@@ -16,7 +16,7 @@ const recommendationRequestFixtures = {
             "explanation": "MS Program",
             "dateRequested": "2024-04-30T22:17:50",
             "dateNeeded": "2024-04-30T22:18:51",
-            "done": "false"
+            "done": false
         },
         {
             "id": 3,
@@ -25,7 +25,7 @@ const recommendationRequestFixtures = {
             "explanation": "PhD Program",
             "dateRequested": "2024-03-30T22:17:57",
             "dateNeeded": "2024-04-30T22:18:57",
-            "done": "true"
+            "done": true
         },
         {
             "id": 4,
@@ -34,7 +34,7 @@ const recommendationRequestFixtures = {
             "explanation": "Scholarship Application",
             "dateRequested": "2022-06-30T22:17:57",
             "dateNeeded": "2024-04-30T22:18:57",
-            "done": "false"
+            "done": false
         }
     ]
 };
