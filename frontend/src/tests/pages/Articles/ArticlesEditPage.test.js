@@ -124,11 +124,11 @@ describe("ArticlesEditPage tests", () => {
             const submitButton = screen.getByTestId("ArticlesForm-submit");
 
             expect(idField).toHaveValue("17");
-            expect(titleField).toHaveValue("editedTestTitle");
-            expect(urlField).toHaveValue("editedTestUrl");
-            expect(explanationField).toHaveValue("editedTestExplanation");
-            expect(emailField).toHaveValue("editedTestEmail");
-            expect(dateAddedField).toHaveValue("3022-02-02T00:00");
+            expect(titleField).toHaveValue("testTitle");
+            expect(urlField).toHaveValue("testUrl");
+            expect(explanationField).toHaveValue("testExplanation");
+            expect(emailField).toHaveValue("testEmail");
+            expect(dateAddedField).toHaveValue("2022-02-02T00:00");
             expect(submitButton).toBeInTheDocument();
         });
 
@@ -153,11 +153,11 @@ describe("ArticlesEditPage tests", () => {
             const submitButton = screen.getByTestId("ArticlesForm-submit");
 
             expect(idField).toHaveValue("17");
-            expect(titleField).toHaveValue("editedTestTitle");
-            expect(urlField).toHaveValue("editedTestUrl");
-            expect(explanationField).toHaveValue("editedTestExplanation");
-            expect(emailField).toHaveValue("editedTestEmail");
-            expect(dateAddedField).toHaveValue("3022-02-02T00:00");
+            expect(titleField).toHaveValue("testTitle");
+            expect(urlField).toHaveValue("testUrl");
+            expect(explanationField).toHaveValue("testExplanation");
+            expect(emailField).toHaveValue("testEmail");
+            expect(dateAddedField).toHaveValue("2022-02-02T00:00");
             expect(submitButton).toBeInTheDocument();
 
             fireEvent.change(titleField, { target: { value: 'editedTestTitle' } });
