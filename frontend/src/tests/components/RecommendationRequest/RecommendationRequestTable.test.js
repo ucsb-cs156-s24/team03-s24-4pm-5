@@ -17,7 +17,7 @@ describe("RecommendationRequestTable tests", () => {
   const queryClient = new QueryClient();
 
   const expectedHeaders = ["id", "RequesterEmail", "ProfessorEmail", "Explanation", "DateRequested", "DateNeeded", "Done"];
-  const expectedFields = ["id", "requesterEmail", "professorEmail", "explanation", "dateRequested", "dateNeeded", "done"];
+  const expectedFields = ["id", "requesterEmail", "professorEmail", "explanation", "dateRequested", "dateNeeded", "Done"];
   const testId = "RecommendationRequestTable";
 
   test("renders empty table correctly", () => {
@@ -76,7 +76,7 @@ describe("RecommendationRequestTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("MS Program");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2024-04-30T22:17:50");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2024-04-30T22:18:51");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-done`)).toHaveTextContent("false");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-Done`)).toHaveTextContent("false");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("john@ucsb.edu");
@@ -84,7 +84,7 @@ describe("RecommendationRequestTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("PhD Program");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2024-03-30T22:17:57");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2024-04-30T22:18:57");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-done`)).toHaveTextContent("true");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-Done`)).toHaveTextContent("true");
 
     expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("4");
 
@@ -128,7 +128,7 @@ describe("RecommendationRequestTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("MS Program");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2024-04-30T22:17:50");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2024-04-30T22:18:51");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-done`)).toHaveTextContent("false");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-Done`)).toHaveTextContent("false");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("john@ucsb.edu");
@@ -136,7 +136,7 @@ describe("RecommendationRequestTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("PhD Program");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2024-03-30T22:17:57");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2024-04-30T22:18:57");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-done`)).toHaveTextContent("true");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-Done`)).toHaveTextContent("true");
 
     expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("4");
 
