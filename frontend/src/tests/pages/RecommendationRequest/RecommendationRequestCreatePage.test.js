@@ -60,7 +60,7 @@ describe("RecommendationRequestCreatePage tests", () => {
             explanation: "Test explanation",
             dateRequested: "2022-02-02T00:00",
             dateNeeded: "2022-03-02T00:00",
-            done: "false"
+            done: false
         };
 
         axiosMock.onPost("/api/RecommendationRequest/post").reply( 202, recommendationRequest );
@@ -105,7 +105,7 @@ describe("RecommendationRequestCreatePage tests", () => {
             "explanation": "Test explanation",
             "dateRequested": "2022-02-02T00:00",
             "dateNeeded": "2022-03-02T00:00",
-            "done": "false"
+            "done": false
         });
 
         expect(mockToast).toBeCalledWith("New RecommendationRequest Created - id: 17 requesterEmail: requestTest@ucsb.edu");

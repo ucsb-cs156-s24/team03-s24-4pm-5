@@ -81,7 +81,7 @@ describe("RecommendationRequestEditPage tests", () => {
                 explanation: "Test explanation",
                 dateRequested: "2022-02-02T00:00",
                 dateNeeded: "2022-03-02T00:00",
-                done: "false"
+                done: false
             });
             axiosMock.onPut('/api/RecommendationRequest').reply(200, {
                 id: "17",
@@ -90,7 +90,7 @@ describe("RecommendationRequestEditPage tests", () => {
                 explanation: "Test explanation edited",
                 dateRequested: "2022-03-02T00:00",
                 dateNeeded: "2022-03-04T00:00",
-                done: "true"
+                done: true
             });
         });
 
@@ -123,7 +123,7 @@ describe("RecommendationRequestEditPage tests", () => {
             const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
             const dateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
             const dateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
-            const doneField = screen.getByTestId("RecommendationRequestForm-done");
+            const checkbox = screen.getByTestId("RecommendationRequestForm-done");
             const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
             expect(idField).toHaveValue("17");
@@ -132,7 +132,7 @@ describe("RecommendationRequestEditPage tests", () => {
             expect(explanationField).toHaveValue("Test explanation");
             expect(dateRequestedField).toHaveValue("2022-02-02T00:00");
             expect(dateNeededField).toHaveValue("2022-03-02T00:00");
-            expect(doneField).toHaveValue("false");
+            expect(checkbox.checked).toBe(false);
             expect(submitButton).toBeInTheDocument();
         });
 
@@ -154,7 +154,7 @@ describe("RecommendationRequestEditPage tests", () => {
             const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
             const dateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
             const dateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
-            const doneField = screen.getByTestId("RecommendationRequestForm-done");
+            const checkbox = screen.getByTestId("RecommendationRequestForm-done");
             const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
             expect(idField).toHaveValue("17");
@@ -163,8 +163,7 @@ describe("RecommendationRequestEditPage tests", () => {
             expect(explanationField).toHaveValue("Test explanation");
             expect(dateRequestedField).toHaveValue("2022-02-02T00:00");
             expect(dateNeededField).toHaveValue("2022-03-02T00:00");
-            expect(doneField).toHaveValue("false");
-
+            expect(checkbox.checked).toBe(false);
             expect(submitButton).toBeInTheDocument();
 
             fireEvent.change(requesterEmailField, { target: { value: 'reqTest@ucsb.edu' } });
@@ -172,8 +171,7 @@ describe("RecommendationRequestEditPage tests", () => {
             fireEvent.change(explanationField, { target: { value: 'Test explanation edited' } });
             fireEvent.change(dateRequestedField, { target: { value: '2022-03-02T00:00' } });
             fireEvent.change(dateNeededField, { target: { value: '2022-03-04T00:00' } });
-            fireEvent.change(doneField, { target: { value: 'true' } });
-
+            fireEvent.click(checkbox);
             fireEvent.click(submitButton);
 
             await waitFor(() => expect(mockToast).toBeCalled());
@@ -188,7 +186,7 @@ describe("RecommendationRequestEditPage tests", () => {
                 explanation: "Test explanation edited",
                 dateRequested: "2022-03-02T00:00",
                 dateNeeded: "2022-03-04T00:00",
-                done: "true"
+                done: true
             })); // posted object
 
         });
