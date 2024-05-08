@@ -5,7 +5,7 @@ const articlesFixtures = {
         "url": "medicalwebsite.com/cancer",
         "explanation": "this is how you cure cancer for real this time guys",
         "email": "certifieddoctor@gmail.com",
-        "localDateTime": "2000-01-01T12:00:00"
+        "dateAdded": "2000-01-01T12:00:00"
     },
     threeArticles: [
         {
@@ -14,7 +14,7 @@ const articlesFixtures = {
             "url": "medicalwebsite.com/cancer",
             "explanation": "this is how you cure cancer for real this time guys",
             "email": "certifieddoctor@gmail.com",
-            "localDateTime": "2000-01-01T12:00:00"
+            "dateAdded": "2000-01-01T12:00:00"
         },
         {
             "id": 2,
@@ -22,7 +22,7 @@ const articlesFixtures = {
             "url": "tabloid.com/dailynews",
             "explanation": "i dont know, they ate a pickle or something",
             "email": "nolifepaparazzi@gmail.com",
-            "localDateTime": "4444-01-01T12:00:00"
+            "dateAdded": "4444-01-01T12:00:00"
         },
         {
             "id": 3,
@@ -30,7 +30,7 @@ const articlesFixtures = {
             "url": "USCoastGuard.com/home",
             "explanation": "nvm false alarm, they were just canadians",
             "email": "theUSGovernment@gmail.com",
-            "localDateTime": "1776-01-01T12:00:00"
+            "dateAdded": "1776-01-01T12:00:00"
         }
     ]
 };
