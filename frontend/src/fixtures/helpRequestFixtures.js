@@ -40,7 +40,7 @@ const helpRequestFixtures = {
             "teamId": "4pm-8",
             "tableOrBreakoutRoom": "8",
             "requestTime": "2024-05-08T00:00:00",
-            "explanation": "Teammates griefing me",
+            "explanation": "issue with javascript",
             "solved": false      
         },
         
