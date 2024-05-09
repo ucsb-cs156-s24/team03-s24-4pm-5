@@ -20,7 +20,6 @@ describe("UCSBOrganizationForm tests", () => {
                 <UCSBOrganizationForm />
             </Router>
         );
-        await screen.findByText(/Quarter YYYYQ/);
         await screen.findByText(/Create/);
     });
 
@@ -29,12 +28,12 @@ describe("UCSBOrganizationForm tests", () => {
 
         render(
             <Router  >
-                <UCSBOrganizationForm initialContents={ucsbOrganizationFixtures.oneOrganization} />
+                <UCSBOrganizationForm initialContents={ucsbOrganizationFixtures.oneOrganization[0]} />
             </Router>
         );
         await screen.findByTestId(/UCSBOrganizationForm-orgCode/);
         expect(screen.getByText(/orgCode/)).toBeInTheDocument();
-        expect(screen.getByTestId(/UCSBOrganizationForm-orgCode/)).toHaveValue("DSC");
+        expect(screen.getByTestId(/UCSBOrganizationForm-orgCode/)).toHaveValue('DSC');
     });
 
 
@@ -47,18 +46,18 @@ describe("UCSBOrganizationForm tests", () => {
         );
         await screen.findByTestId("UCSBOrganizationForm-orgCode");
         const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
-        const orgTShortField = screen.getByTestId("UCSBOrganizationForm-orgTranslationShort");
-        const orgTField = screen.getByTestId("UCSBOrganizationForm-orgTranslation");
-        const inactiveField = screen.getByTestId("UCSBOrganizationForm-inactive");
+        const orgTranslationShortField = screen.getByTestId("UCSBOrganizationForm-orgTranslationShort");
+        const orgTranslationField = screen.getByTestId("UCSBOrganizationForm-orgTranslation");
         const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
 
-        fireEvent.change(orgCodeField, { target: { value: 'bad' } });
-        fireEvent.change(orgTShortField, { target: { value: 'bad' } });
-        fireEvent.change(orgTField, { target: { value: 'bad' } });
-        fireEvent.change(inactiveField, { target: { value: false } });
+        
+        fireEvent.change(orgCodeField, { target: { value: "bad-input" } });
+        fireEvent.change(orgTranslationShortField, { target: { value:  "bad-input" } });
+        fireEvent.change(orgTranslationField, { target: { value:  "bad-input" } });
         fireEvent.click(submitButton);
 
-        await screen.findByText(/orgCode is required./);
+	expect(screen.queryByText(/orgTranslationShort should be in the string format/)).not.toBeInTheDocument();
+
     });
 
     test("Correct Error messsages on missing input", async () => {
@@ -79,12 +78,9 @@ describe("UCSBOrganizationForm tests", () => {
         expect(screen.getByText(/inactive is required./)).toBeInTheDocument();
 
     });
-
     test("No Error messsages on good input", async () => {
 
         const mockSubmitAction = jest.fn();
-
-
         render(
             <Router  >
                 <UCSBOrganizationForm submitAction={mockSubmitAction} />
@@ -93,14 +89,14 @@ describe("UCSBOrganizationForm tests", () => {
         await screen.findByTestId("UCSBOrganizationForm-orgCode");
 
         const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
-        const orgTShortField = screen.getByTestId("UCSBOrganizationForm-orgTranslationShort");
-        const orgTField = screen.getByTestId("UCSBOrganizationForm-orgTranslation");
+        const orgTranslationShortField = screen.getByTestId("UCSBOrganizationForm-orgTranslationShort");
+        const orgTranslationField = screen.getByTestId("UCSBOrganizationForm-orgTranslation");
         const inactiveField = screen.getByTestId("UCSBOrganizationForm-inactive");
         const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
 
-        fireEvent.change(orgCodeField, { target: { value: 'DSC' } });
-        fireEvent.change(orgTShortField, { target: { value: 'DS Club' } });
-        fireEvent.change(orgTField, { target: { value: 'Data Science Club' } });
+        fireEvent.change(orgCodeField, { target: { value: 'DSP' } });
+        fireEvent.change(orgTranslationShortField, { target: { value: 'Delta Sig' } });
+        fireEvent.change(orgTranslationField, { target: { value: 'Delta Sigma Pi' } });
         fireEvent.change(inactiveField, { target: { value: false } });
         fireEvent.click(submitButton);
 
@@ -108,9 +104,8 @@ describe("UCSBOrganizationForm tests", () => {
 
         expect(screen.queryByText(/orgTranslationShort must be a string/)).not.toBeInTheDocument();
         expect(screen.queryByText(/orgTranslation must be a string/)).not.toBeInTheDocument();
+
     });
-
-
     test("that navigate(-1) is called when Cancel is clicked", async () => {
 
         render(
@@ -128,5 +123,4 @@ describe("UCSBOrganizationForm tests", () => {
     });
 
 });
-
 

@@ -17,42 +17,41 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
    
     const navigate = useNavigate();
 
-    const testIdPrefix = "RestaurantForm";
+    const inactive_regex = /(true|false)/i;
+    const testIdPrefix = "UCSBOrganizationForm";
 
     return (
         <Form onSubmit={handleSubmit(submitAction)}>
 
-            {initialContents && (
-                <Form.Group className="mb-3" >
-                    <Form.Label htmlFor="orgCode">orgCode</Form.Label>
-                    <Form.Control
-                        data-testid={testIdPrefix + "-orgCode"}
-                        id="orgCode"
-                        type="text"
-                        {...register("orgCode")}
-                        value={initialContents.id}
-                        disabled
-                    />
-                </Form.Group>
-            )}
-
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="orgCode">orgCode</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-orgCode"}
+                    id="orgCode"
+                    type="text"
+                    isInvalid={Boolean(errors.orgCode)}
+                    {...register("orgCode", {
+                    required: "orgCode is required."
+                })}
+                />
+                <Form.Control.Feedback type="invalid">
+                {errors.orgCode?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
+            
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="orgTranslationShort">orgTranslationShort</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-orgTranslationShort"}
                     id="orgTranslationShort"
                     type="text"
-                    isInvalid={Boolean(errors.name)}
+                    isInvalid={Boolean(errors.orgTranslationShort)}
                     {...register("orgTranslationShort", {
-                        required: "orgTranslationShort is required.",
-                        maxLength : {
-                            value: 30,
-                            message: "Max length 30 characters"
-                        }
+                        required: "orgTranslationShort is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.name?.message}
+                    {errors.orgTranslationShort?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
@@ -68,25 +67,27 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.description?.message}
+                    {errors.orgTranslation?.message}
                 </Form.Control.Feedback>
             </Form.Group>
+
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="inactive">inactive</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-inactive"}
                     id="inactive"
                     type="text"
-                    isInvalid={Boolean(errors.orgTranslation)}
+                    isInvalid={Boolean(errors.inactive)}
                     {...register("inactive", {
-                        required: "inactive is required."
+                        required: "inactive is required.", 
+                        pattern: inactive_regex
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.description?.message}
+                    {errors.inactive?.message && 'inactive is required. '}
+                    {'The input should be just true or false'}
                 </Form.Control.Feedback>
             </Form.Group>
-
 
             <Button
                 type="submit"
@@ -101,10 +102,8 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
             >
                 Cancel
             </Button>
-
         </Form>
 
     )
 }
-
 export default UCSBOrganizationForm;
