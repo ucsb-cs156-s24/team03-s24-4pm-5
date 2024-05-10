@@ -1,208 +1,84 @@
-import { render, screen} from "@testing-library/react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { MemoryRouter } from "react-router-dom";
-import { currentUserFixtures } from "fixtures/currentUserFixtures";
+import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { hasRole } from "main/utils/currentUser";
+import AppNavbarLocalhost from "main/components/Nav/AppNavbarLocalhost"
 
-import AppNavbar from "main/components/Nav/AppNavbar";
-import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
+export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUrl = window.location.href }) {
+  var oauthLogin = systemInfo?.oauthLogin || "/oauth2/authorization/google";
+  return (
+    <>
+      {
+        (currentUrl.startsWith("http://localhost:3000") ||
+          currentUrl.startsWith("http://127.0.0.1:3000")) && (
+          <AppNavbarLocalhost url={currentUrl} />
+        )
+      }
+      <Navbar expand="xl" variant="dark" bg="dark" sticky="top" data-testid="AppNavbar">
+        <Container>
+          <Navbar.Brand as={Link} to="/">
+            Example
+          </Navbar.Brand>
 
-describe("AppNavbar tests", () => {
+          <Navbar.Toggle />
 
-    const queryClient = new QueryClient();
+          <Nav className="me-auto">
+            {
+              systemInfo?.springH2ConsoleEnabled && (
+                <>
+                  <Nav.Link href="/h2-console">H2Console</Nav.Link>
+                </>
+              )
+            }
+            {
+              systemInfo?.showSwaggerUILink && (
+                <>
+                  <Nav.Link href="/swagger-ui/index.html">Swagger</Nav.Link>
+                </>
+              )
+            }
+          </Nav>
 
-    test("renders correctly for regular logged in user", async () => {
+          <>
+            {/* be sure that each NavDropdown has a unique id and data-testid  */}
+          </>
 
-        const currentUser = currentUserFixtures.userOnly;
-        const doLogin = jest.fn();
-
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} doLogin={doLogin} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await screen.findByText("Welcome, pconrad.cis@gmail.com");
-    });
-
-    test("renders correctly for admin user", async () => {
-
-        const currentUser = currentUserFixtures.adminUser;
-        const doLogin = jest.fn();
-
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} doLogin={doLogin} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await screen.findByText("Welcome, phtcon@ucsb.edu");
-        const adminMenu = screen.getByTestId("appnavbar-admin-dropdown");
-        expect(adminMenu).toBeInTheDocument();        
-    });
-
-    test("renders H2Console and Swagger links correctly", async () => {
-
-        const currentUser = currentUserFixtures.adminUser;
-        const systemInfo = systemInfoFixtures.showingBoth;
-
-        const doLogin = jest.fn();
-
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await screen.findByText("H2Console");
-        const swaggerMenu = screen.getByText("Swagger");
-        expect(swaggerMenu).toBeInTheDocument();        
-    });
-
-
-
-    test("renders the AppNavbarLocalhost when on http://localhost:3000", async () => {
-
-        const currentUser = currentUserFixtures.userOnly;
-        const systemInfo = systemInfoFixtures.showingBoth;
-        const doLogin = jest.fn();
-
-        delete window.location
-        window.location = new URL('http://localhost:3000')
-
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await screen.findByTestId("AppNavbarLocalhost");
-    });
-
-    test("renders the AppNavbarLocalhost when on http://127.0.0.1:3000", async () => {
-
-        const currentUser = currentUserFixtures.userOnly;
-        const systemInfo = systemInfoFixtures.showingBoth;
-        const doLogin = jest.fn();
-
-        delete window.location
-        window.location = new URL('http://127.0.0.1:3000')
-
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await screen.findByTestId("AppNavbarLocalhost");
-    });
-
-    test("does NOT render the AppNavbarLocalhost when on localhost:8080", async () => {
-
-        const currentUser = currentUserFixtures.userOnly;
-        const systemInfo = systemInfoFixtures.showingBoth;
-        const doLogin = jest.fn();
-
-        delete window.location
-        window.location = new URL('http://localhost:8080')
-
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await screen.findByTestId("AppNavbar");
-        expect(screen.queryByTestId(/AppNavbarLocalhost/i)).toBeNull();
-    });
-
-
-    test("renders the ucsbdates link correctly", async () => {
-
-        const currentUser = currentUserFixtures.userOnly;
-        const systemInfo = systemInfoFixtures.showingBoth;
-
-        const doLogin = jest.fn();
-
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await screen.findByText("UCSB Dates");
-        const link = screen.getByText("UCSB Dates");
-        expect(link).toBeInTheDocument();
-        expect(link.getAttribute("href")).toBe("/ucsbdates");
-    });
-
-    test("renders the restaurants link correctly", async () => {
-
-        const currentUser = currentUserFixtures.userOnly;
-        const systemInfo = systemInfoFixtures.showingBoth;
-
-        const doLogin = jest.fn();
-
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await screen.findByText("Restaurants");
-        const link = screen.getByText("Restaurants");
-        expect(link).toBeInTheDocument();
-        expect(link.getAttribute("href")).toBe("/restaurants");
-    });
-
-    test("Restaurant and UCSBDates links do NOT show when not logged in", async () => {
-        const currentUser = null;
-        const systemInfo = systemInfoFixtures.showingBoth;
-        const doLogin = jest.fn();
-
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        expect(screen.queryByText("Restaurants")).not.toBeInTheDocument();
-        expect(screen.queryByText("UCSBDates")).not.toBeInTheDocument();
-    });
-
-    test("when oauthlogin undefined, default value is used", async () =>  {
-        const currentUser = currentUserFixtures.notLoggedIn;
-        const systemInfo = systemInfoFixtures.oauthLoginUndefined;
-
-       render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await screen.findByText("Log In");
-        expect(screen.getByText("Log In")).toHaveAttribute("href", "/oauth2/authorization/google");
-    });
-
-});
-
-
+          <Navbar.Collapse className="justify-content-between">
+            <Nav className="mr-auto">
+              {
+                hasRole(currentUser, "ROLE_ADMIN") && (
+                  <NavDropdown title="Admin" id="appnavbar-admin-dropdown" data-testid="appnavbar-admin-dropdown" >
+                    <NavDropdown.Item href="/admin/users">Users</NavDropdown.Item>
+                  </NavDropdown>
+                )
+              }
+            </Nav>
+            {
+              currentUser && currentUser.loggedIn && (
+                <>
+                  <Nav.Link as={Link} to="/restaurants">Restaurants</Nav.Link>
+                  <Nav.Link as={Link} to="/ucsbdates">UCSB Dates</Nav.Link>
+                  <Nav.Link as={Link} to="/recommendationrequest">Recommendation Request</Nav.Link>
+                  <Nav.Link as={Link} to="/placeholder">Placeholder</Nav.Link>
+                  <Nav.Link as={Link} to="/articles">Articles</Nav.Link>
+                  <Nav.Link as={Link} to="/UCSBOrganization">UCSB Organization</Nav.Link>
+                </>
+              )
+            }
+            <Nav className="ml-auto">
+              {
+                currentUser && currentUser.loggedIn ? (
+                  <>
+                    <Navbar.Text className="me-3" as={Link} to="/profile">Welcome, {currentUser.root.user.email}</Navbar.Text>
+                    <Button onClick={doLogout}>Log Out</Button>
+                  </>
+                ) : (
+                  <Button href={oauthLogin}>Log In</Button>
+                )
+              }
+            </Nav>
+          </Navbar.Collapse>
+        </Container >
+      </Navbar >
+    </>
+  );
+}
