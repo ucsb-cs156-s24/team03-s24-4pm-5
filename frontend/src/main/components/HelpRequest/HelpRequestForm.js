@@ -123,10 +123,12 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                             id="explanation"
                             type="text"
                             isInvalid={Boolean(errors.explanation)}
-                            {...register("explanation", { required: true, pattern: isodate_regex })}
+                            {...register("explanation", {
+                                required: "Explanation is required.",
+                            })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.explanation && 'Explanation is required. '}
+                            {errors.explanation?.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
