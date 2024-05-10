@@ -5,7 +5,7 @@ const ucsbOrganizationFixtures = {
        "orgCode": "DSC",
         "orgTranslationShort": "DS Club",
         "orgTranslation": "Data Science Club",
-        "inactive": false,      
+        "inactive": "false",      
       }
     ],
 
@@ -15,21 +15,21 @@ const ucsbOrganizationFixtures = {
             "orgCode": "CD",
             "orgTranslationShort": "Coder",
             "orgTranslation": "CoderSB",
-            "inactive": false,    
+            "inactive": "false",    
         },
 
         {
             "orgCode": "HK",
             "orgTranslationShort": "Hiking",
             "orgTranslation": "Hiking Club",
-            "inactive": false,    
+            "inactive": "false",    
         },
 
         {
             "orgCode": "AS",
             "orgTranslationShort": "Asossiated Students",
             "orgTranslation": "Associated Students Of UCSB",
-            "inactive": false,    
+            "inactive": "false",    
         },
         
     ]

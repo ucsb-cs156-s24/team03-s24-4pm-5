@@ -84,7 +84,7 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.inactive?.message && 'inactive is required. '}
+                    {errors.inactive?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
