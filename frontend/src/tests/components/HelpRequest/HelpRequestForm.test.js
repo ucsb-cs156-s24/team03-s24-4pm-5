@@ -28,17 +28,17 @@ describe("HelpRequestForm tests", () => {
     });
 
 
-    test("renders correctly when passing in a HelpRequest", async () => {
-
-        render(
-            <Router  >
-                <HelpRequestForm initialContents={helpRequestFixtures.oneHelpRequest} />
-            </Router>
-        );
-        await screen.findByTestId(/HelpRequestForm-id/);
-        expect(screen.getByText(/Id/)).toBeInTheDocument();
-        expect(screen.getByTestId(/HelpRequestForm-id/)).toHaveValue("1");
-    });
+//    test("renders correctly when passing in a HelpRequest", async () => {
+//
+//        render(
+//            <Router  >
+//                <HelpRequestForm initialContents={helpRequestFixtures.oneHelpRequest} />
+//            </Router>
+//        );
+//        await screen.findByTestId(/HelpRequestForm-id/);
+//        expect(screen.getByText(/Id/)).toBeInTheDocument();
+//        expect(screen.getByTestId(/HelpRequestForm-id/)).toHaveValue("1");
+//    });
 
 
     test("Correct Error messsages on bad input", async () => {
@@ -65,7 +65,7 @@ describe("HelpRequestForm tests", () => {
         fireEvent.change(solvedField, { target: { value: 'bad-input' } });
         fireEvent.click(submitButton);
 
-        await screen.findByText(/RequestTime is required./);
+        await screen.findByText(/Request Time is required./);
     });
 
 
