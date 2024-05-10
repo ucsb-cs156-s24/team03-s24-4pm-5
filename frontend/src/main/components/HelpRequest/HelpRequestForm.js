@@ -92,7 +92,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                             type="text"
                             isInvalid={Boolean(errors.tableOrBreakoutRoom)}
                             {...register("tableOrBreakoutRoom", {
-                                required: "Table or breakout room is required.",
+                                required: "Table or Breakout Room is required.",
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
@@ -111,7 +111,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                             {...register("requestTime", { required: true, pattern: isodate_regex })}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.requestTime && 'Request time is required. '}
+                            {errors.requestTime && 'Request Time is required. '}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
