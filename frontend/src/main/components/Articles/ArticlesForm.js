@@ -129,7 +129,7 @@ function ArticlesForm({ initialContents, submitAction, buttonLabel = "Create" })
                         <Form.Control
                             data-testid="ArticlesForm-dateAdded"
                             id="dateAdded"
-                            type="datetime-local"
+                            type="text"
                             isInvalid={Boolean(errors.dateAdded)}
                             {...register("dateAdded", { required: true, pattern: isodate_regex })}
                         />
