@@ -2,7 +2,7 @@ const menuItemReviewFixtures = {
     oneReview: {
         "id": 1,
         "itemId": 12,
-        "reviewerEmail": "stevenle@ucsb.edu",
+        "reviewerEmail": "phtcon@ucsb.edu",
         "stars": 1,
         "dateReviewed": "2022-04-20T12:00:00",
         "comments": "This ain't it. Y'all need a reality check."
@@ -11,7 +11,7 @@ const menuItemReviewFixtures = {
         {
             "id": 1,
             "itemId": 12,
-            "reviewerEmail": "steven@ucsb.edu",
+            "reviewerEmail": "phtcon@ucsb.edu",
             "stars": 3,
             "dateReviewed": "2022-01-23T11:00:00",
             "comments": "Please choose a new career path."
