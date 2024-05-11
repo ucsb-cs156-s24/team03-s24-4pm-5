@@ -125,7 +125,6 @@ describe("UCSBOrganizationEditPage tests", () => {
         });
 
         test("Changes when you click Update", async () => {
-
             render(
                 <QueryClientProvider client={queryClient}>
                     <MemoryRouter>
@@ -133,43 +132,34 @@ describe("UCSBOrganizationEditPage tests", () => {
                     </MemoryRouter>
                 </QueryClientProvider>
             );
-
             await screen.findByTestId("UCSBOrganizationForm-orgCode");
-
             const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
             const orgTranslationShortField = screen.getByTestId("UCSBOrganizationForm-orgTranslationShort");
             const orgTranslationField = screen.getByTestId("UCSBOrganizationForm-orgTranslation");
             const inactiveField = screen.getByTestId("UCSBOrganizationForm-inactive");
             const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
-
             expect(orgCodeField).toHaveValue("CD");
             expect(orgTranslationShortField).toHaveValue("Coder");
             expect(orgTranslationField).toHaveValue("CoderSB");
             expect(inactiveField).toHaveValue("false");
-
             expect(submitButton).toBeInTheDocument();
-
-            fireEvent.change(orgCodeField, { target: { value: 'CD' } })
-            fireEvent.change(orgTranslationShortField, { target: { value: 'Coder' } })
-            fireEvent.change(orgTranslationField, { target: { value: "CoderSB" } })
-
+            fireEvent.change(orgCodeField, { target: { value: 'aCD' } })
+            fireEvent.change(orgTranslationShortField, { target: { value: 'aCoder' } })
+            fireEvent.change(orgTranslationField, { target: { value: "aCoderSB" } })
+            fireEvent.change(inactiveField, { target: { value: "true" } })
             fireEvent.click(submitButton);
-
             await waitFor(() => expect(mockToast).toBeCalled());
             expect(mockToast).toBeCalledWith("UCSBOrganization Updated - orgCode: CD orgTranslationShort: Coder");
             expect(mockNavigate).toBeCalledWith({ "to": "/UCSBOrganization" });
-
             expect(axiosMock.history.put.length).toBe(1); // times called
-            expect(axiosMock.history.put[0].params).toEqual({ orgCode: "CD" });
+            expect(axiosMock.history.put[0].params).toEqual({ orgCode: "aCD" });
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
-                orgCode: "CD", 
-                orgTranslationShort: "Coder",
-                orgTranslation: "CoderSB",
-                inactive: false
+                orgCode: "aCD",
+                orgTranslationShort: "aCoder",
+                orgTranslation: "aCoderSB",
+                inactive: "true"
             })); // posted object
-
         });
-
        
     });
 });
