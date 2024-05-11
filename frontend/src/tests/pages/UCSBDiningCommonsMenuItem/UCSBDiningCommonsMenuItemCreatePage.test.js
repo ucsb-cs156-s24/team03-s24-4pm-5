@@ -56,7 +56,7 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
 
         const queryClient = new QueryClient();
         const UCSBDiningCommonsMenuItem = {
-            id: 3,
+            id: "3",
             name: "Spaghetti with Meatballs",
             diningCommonsCode: "Carrillo",
             station: "Italian Kitchen"   
@@ -72,16 +72,14 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
             </QueryClientProvider>
         )
 
-        await screen.findByTestId("UCSBDiningCommonsMenuItemForm-id");
+        await screen.findByTestId("UCSBDiningCommonsMenuItemForm-name");
 
-        const idInput = screen.getByTestId("UCSBDiningCommonsMenuItemForm-id");
         const nameInput = screen.getByTestId("UCSBDiningCommonsMenuItemForm-name");
         const diningCommonsCodeInput = screen.getByTestId("UCSBDiningCommonsMenuItemForm-diningCommonsCode");
         const stationInput = screen.getByTestId("UCSBDiningCommonsMenuItemForm-station");
         const createButton = screen.getByText("Create");
         expect(createButton).toBeInTheDocument();
 
-        fireEvent.change(idInput, { target: { value: 3 } })
         fireEvent.change(nameInput, { target: { value: 'Spaghetti with Meatballs' } })
         fireEvent.change(diningCommonsCodeInput, { target: { value: 'Carrillo' } })
         fireEvent.change(stationInput, { target: { value: 'Italian Kitchen' } })
@@ -91,9 +89,8 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
         await waitFor(() => expect(axiosMock.history.post.length).toBe(1));
 
         expect(axiosMock.history.post[0].params).toEqual({
-            id: "3",
-            name: "Spaghetti with Meatballs",
             diningCommonsCode: "Carrillo",
+            name: "Spaghetti with Meatballs",
             station: "Italian Kitchen"  
         });
 

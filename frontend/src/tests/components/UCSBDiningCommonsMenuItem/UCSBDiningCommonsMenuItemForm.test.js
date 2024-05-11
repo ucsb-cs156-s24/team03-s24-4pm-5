@@ -17,7 +17,7 @@ jest.mock('react-router-dom', () => ({
 describe("UCSBDiningCommonsMenuItemForm tests", () => {
     const queryClient = new QueryClient();
 
-    const expectedHeaders = ["Name", "DiningCommonsCode","Station"];
+    const expectedHeaders = ["name", "diningCommonsCode","station"];
     const testId = "UCSBDiningCommonsMenuItemForm";
 
     test("renders correctly with no initialContents", async () => {
@@ -54,8 +54,8 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
             expect(header).toBeInTheDocument();
         });
 
-        expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
-        expect(screen.getByText(`Id`)).toBeInTheDocument();
+        expect(await screen.findByTestId(`${testId}-name`)).toBeInTheDocument();
+        expect(screen.getByText(`name`)).toBeInTheDocument();
     });
 
 
@@ -111,15 +111,13 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
                 <UCSBDiningCommonsMenuItemForm submitAction={mockSubmitAction} />
             </Router>
         );
-        await screen.findByTestId("UCSBDiningCommonsMenuItemForm-id");
+        await screen.findByTestId("UCSBDiningCommonsMenuItemForm-name");
 
-        const idField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-id");
         const nameField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-name");
         const dcField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-diningCommonsCode");
         const stationField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-station");
         const submitButton = screen.getByTestId("UCSBDiningCommonsMenuItemForm-submit");
 
-        fireEvent.change(idField, { target: { value: 3 } });
         fireEvent.change(nameField, { target: { value: 'Spaghetti with Meatballs' } });
         fireEvent.change(dcField, { target: { value: 'Carillo' } });
         fireEvent.change(stationField, { target: { value: 'Italian Kitchen' } });

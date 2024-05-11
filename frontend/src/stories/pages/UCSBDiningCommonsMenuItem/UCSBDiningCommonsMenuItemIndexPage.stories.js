@@ -4,14 +4,14 @@ import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import { ucsbDiningCommonsMenuItemFixtures } from "fixtures/ucsbDiningCommonsMenuItemFixtures";
 import { rest } from "msw";
 
-import UCSBDiningCommonMenuItemIndexPage from "main/pages/UCSBDiningCommonMenuItem/UCSBDiningCommonMenuItemIndexPage";
+import UCSBDiningCommonsMenuItemIndexPage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemIndexPage";
 
 export default {
-    title: 'pages/UCSBDiningCommonMenuItem/UCSBDiningCommonMenuItemIndexPage',
-    component: UCSBDiningCommonMenuItemIndexPage
+    title: 'pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemIndexPage',
+    component: UCSBDiningCommonsMenuItemIndexPage
 };
 
-const Template = () => <UCSBDiningCommonMenuItemIndexPage storybook={true}/>;
+const Template = () => <UCSBDiningCommonsMenuItemIndexPage storybook={true}/>;
 
 export const Empty = Template.bind({});
 Empty.parameters = {
@@ -22,7 +22,7 @@ Empty.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/UCSBDiningCommonMenuItem/all', (_req, res, ctx) => {
+        rest.get('/api/UCSBDiningCommonsMenuItem/all', (_req, res, ctx) => {
             return res(ctx.json([]));
         }),
     ]
@@ -38,7 +38,7 @@ ThreeItemsOrdinaryUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/UCSBDiningCommonMenuItem/all', (_req, res, ctx) => {
+        rest.get('/api/UCSBDiningCommonsMenuItem/all', (_req, res, ctx) => {
             return res(ctx.json(ucsbDiningCommonsMenuItemFixtures.threeMenuItems));
         }),
     ],
@@ -54,10 +54,10 @@ ThreeItemsAdminUser.parameters = {
         rest.get('/api/systemInfo', (_req, res, ctx) => {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
-        rest.get('/api/UCSBDiningCommonMenuItem/all', (_req, res, ctx) => {
+        rest.get('/api/UCSBDiningCommonsMenuItem/all', (_req, res, ctx) => {
             return res(ctx.json(ucsbDiningCommonsMenuItemFixtures.threeMenuItems));
         }),
-        rest.delete('/api/UCSBDiningCommonMenuItem', (req, res, ctx) => {
+        rest.delete('/api/UCSBDiningCommonsMenuItem', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));
             return res(ctx.status(200),ctx.json({}));
         }),

@@ -23,18 +23,22 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
         <Form onSubmit={handleSubmit(submitAction)}>
 
 
-            <Form.Group className="mb-3" >
-                <Form.Label htmlFor="id">Id</Form.Label>
-                <Form.Control
-                    data-testid={testIdPrefix + "-id"}
-                    id="id"
-                    type="text"
-                    {...register("id", { required: "Id is required." })}
-                />
-            </Form.Group>
+            {initialContents && (
+                <Form.Group className="mb-3" >
+                    <Form.Label htmlFor="id">id</Form.Label>
+                    <Form.Control
+                        data-testid="UCSBDiningCommonsMenuItemForm-id"
+                        id="id"
+                        type="text"
+                        {...register("id")}
+                        value={initialContents.id}
+                        disabled
+                    />
+                </Form.Group>
+            )}
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="name">Name</Form.Label>
+                <Form.Label htmlFor="name">name</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-name"}
                     id="name"
@@ -54,7 +58,7 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
             </Form.Group>
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="diningCommonsCode">DiningCommonsCode</Form.Label>
+                <Form.Label htmlFor="diningCommonsCode">diningCommonsCode</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-diningCommonsCode"}
                     id="diningCommonsCode"
@@ -70,7 +74,7 @@ function UCSBDiningCommonsMenuItemForm({ initialContents, submitAction, buttonLa
             </Form.Group>
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="station">Station</Form.Label>
+                <Form.Label htmlFor="station">station</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-station"}
                     id="station"

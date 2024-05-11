@@ -1,42 +1,179 @@
-import { render, screen } from "@testing-library/react";
-import PlaceholderEditPage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemEditPage";
+import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
+import UCSBDiningCommonsMenuItemEditPage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemEditPage";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import mockConsole from "jest-mock-console";
 
+const mockToast = jest.fn();
+jest.mock('react-toastify', () => {
+    const originalModule = jest.requireActual('react-toastify');
+    return {
+        __esModule: true,
+        ...originalModule,
+        toast: (x) => mockToast(x)
+    };
+});
+
+const mockNavigate = jest.fn();
+jest.mock('react-router-dom', () => {
+    const originalModule = jest.requireActual('react-router-dom');
+    return {
+        __esModule: true,
+        ...originalModule,
+        useParams: () => ({
+            id: 17
+        }),
+        Navigate: (x) => { mockNavigate(x); return null; }
+    };
+});
 
 describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
 
-    const axiosMock = new AxiosMockAdapter(axios);
+    describe("when the backend doesn't return data", () => {
 
-    const setupUserOnly = () => {
-        axiosMock.reset();
-        axiosMock.resetHistory();
-        axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
-        axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-    };
+        const axiosMock = new AxiosMockAdapter(axios);
 
-    const queryClient = new QueryClient();
-    test("Renders expected content", () => {
-        // arrange
+        beforeEach(() => {
+            axiosMock.reset();
+            axiosMock.resetHistory();
+            axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
+            axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+            axiosMock.onGet("/api/UCSBDiningCommonsMenuItem", { params: { id: "2" } }).timeout();
+        });
 
-        setupUserOnly();
+        const queryClient = new QueryClient();
+        test("renders header but table is not present", async () => {
 
-        // act
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <PlaceholderEditPage />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
+            const restoreConsole = mockConsole();
 
-        // assert
-        expect(screen.getByText("Edit page not yet implemented")).toBeInTheDocument();
+            render(
+                <QueryClientProvider client={queryClient}>
+                    <MemoryRouter>
+                        <UCSBDiningCommonsMenuItemEditPage />
+                    </MemoryRouter>
+                </QueryClientProvider>
+            );
+            await screen.findByText("Edit UCSBDiningCommonsMenuItem");
+            expect(screen.queryByTestId("UCSBDiningCommonsMenuItemForm-id")).not.toBeInTheDocument();
+            restoreConsole();
+        });
     });
 
+    describe("tests where backend is working normally", () => {
+
+        const axiosMock = new AxiosMockAdapter(axios);
+
+        beforeEach(() => {
+            axiosMock.reset();
+            axiosMock.resetHistory();
+            axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
+            axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+            axiosMock.onGet("/api/UCSBDiningCommonsMenuItem", { params: { id: 17 } }).reply(200, {
+                id: "2",
+                name: "Chicken Parmesan",
+                diningCommonsCode: "DLG",
+                station: "Entrees"   
+            });
+            axiosMock.onPut('/api/UCSBDiningCommonsMenuItem').reply(200, {
+                id: "3",
+                name: "Spaghetti with Meatballs",
+                diningCommonsCode: "Carillo",
+                station: "Italian Kitchen"   
+            });
+        });
+
+        const queryClient = new QueryClient();
+    
+        test("Is populated with the data provided", async () => {
+
+            render(
+                <QueryClientProvider client={queryClient}>
+                    <MemoryRouter>
+                        <UCSBDiningCommonsMenuItemEditPage />
+                    </MemoryRouter>
+                </QueryClientProvider>
+            );
+
+            await screen.findByTestId("UCSBDiningCommonsMenuItemForm-name");
+
+            const idField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-id");
+            const nameField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-name");
+            const diningCommonsCodeField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-diningCommonsCode");
+            const stationField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-station");
+            const submitButton = screen.getByTestId("UCSBDiningCommonsMenuItemForm-submit");
+
+            expect(idField).toBeInTheDocument();
+            expect(idField).toHaveValue("2");
+            expect(nameField).toBeInTheDocument();
+            expect(nameField).toHaveValue("Chicken Parmesan");
+            expect(diningCommonsCodeField).toBeInTheDocument();
+            expect(diningCommonsCodeField).toHaveValue("DLG");
+            expect(stationField).toBeInTheDocument();
+            expect(stationField).toHaveValue("Entrees");
+
+            expect(submitButton).toHaveTextContent("Update");
+
+            fireEvent.change(nameField, { target: { value: 'Spaghetti with Meatballs' } });
+            fireEvent.change(diningCommonsCodeField, { target: { value: 'Carillo' } });
+            fireEvent.change(stationField, { target: { value: 'Italian Kitchen' } });
+            fireEvent.click(submitButton);
+
+            await waitFor(() => expect(mockToast).toBeCalled());
+            expect(mockToast).toBeCalledWith("UCSBDiningCommonsMenuItem Updated - id: 3 name: Spaghetti with Meatballs");
+            
+            expect(mockNavigate).toBeCalledWith({ "to": "/UCSBDiningCommonsMenuItem" });
+
+            expect(axiosMock.history.put.length).toBe(1); // times called
+            expect(axiosMock.history.put[0].params).toEqual({ id: "2" });
+            expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
+                name: "Spaghetti with Meatballs",
+                diningCommonsCode: "Carillo",
+                station: "Italian Kitchen"  
+            })); // posted object
+
+
+        });
+
+        test("Changes when you click Update", async () => {
+
+            render(
+                <QueryClientProvider client={queryClient}>
+                    <MemoryRouter>
+                        <UCSBDiningCommonsMenuItemEditPage />
+                    </MemoryRouter>
+                </QueryClientProvider>
+            );
+            
+
+            await screen.findByTestId("UCSBDiningCommonsMenuItemForm-name");
+
+            const idField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-id");
+            const nameField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-name");
+            const diningCommonsCodeField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-diningCommonsCode");
+            const stationField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-station");
+            const submitButton = screen.getByTestId("UCSBDiningCommonsMenuItemForm-submit");
+
+            expect(idField).toHaveValue("2");
+            expect(nameField).toHaveValue("Chicken Parmesan");
+            expect(diningCommonsCodeField).toHaveValue("DLG");
+            expect(stationField).toHaveValue("Entrees");
+            expect(submitButton).toBeInTheDocument();
+
+            fireEvent.change(nameField, { target: { value: 'Spaghetti with Meatballs' } })
+            fireEvent.change(diningCommonsCodeField, { target: { value: 'Carillo' } });
+            fireEvent.change(stationField, { target: { value: 'Italian Kitchen' } });
+            fireEvent.click(submitButton);
+
+            await waitFor(() => expect(mockToast).toBeCalled());
+            expect(mockToast).toBeCalledWith("UCSBDiningCommonsMenuItem Updated - id: 3 name: Spaghetti with Meatballs");
+            expect(mockNavigate).toBeCalledWith({ "to": "/UCSBDiningCommonsMenuItem" });
+        });
+
+       
+    });
 });
