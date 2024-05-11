@@ -8,7 +8,7 @@ export default function MenuItemReviewTable({ reviews, currentUser}) {
     const navigate = useNavigate();
 
     const editCallback = (cell) => {
-        navigate(`/menuItemReviews/edit/${cell.row.values.id}`)
+        navigate(`/MenuItemReview/edit/${cell.row.values.id}`)
     };
 
 
