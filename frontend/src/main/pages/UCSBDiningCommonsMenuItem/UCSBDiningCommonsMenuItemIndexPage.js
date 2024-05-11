@@ -10,7 +10,7 @@ export default function UCSBDiningCommonsMenuItemIndexPage() {
 
     const currentUser = useCurrentUser();
 
-    const { data: restaurants, error: _error, status: _status } =
+    const { data: UCSBDiningCommonsMenuItem, error: _error, status: _status } =
         useBackend(
             // Stryker disable next-line all : don't test internal caching of React Query
             ["/api/UCSBDiningCommonsMenuItem/all"],
@@ -27,7 +27,7 @@ export default function UCSBDiningCommonsMenuItemIndexPage() {
                     href="/UCSBDiningCommonsMenuItem/Create"
                     style={{ float: "right" }}
                 >
-                    Create Menu Item
+                    Create UCSBDiningCommonsMenuItem
                 </Button>
             )
         } 
