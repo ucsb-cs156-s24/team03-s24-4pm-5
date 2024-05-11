@@ -129,7 +129,7 @@ function App() {
         {
           hasRole(currentUser, "ROLE_ADMIN") && (
             <>
-              <Route exact path="/UCSBOrganization/edit/:id" element={<UCSBOrganizationEditPage />} />
+              <Route exact path="/UCSBOrganization/edit/:orgCode" element={<UCSBOrganizationEditPage />} />
               <Route exact path="/UCSBOrganization/create" element={<UCSBOrganizationCreatePage />} />
             </>
           )
