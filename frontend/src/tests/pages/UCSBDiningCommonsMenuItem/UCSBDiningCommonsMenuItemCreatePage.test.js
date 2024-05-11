@@ -53,7 +53,7 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
         );
     });
 
-    test("on submit, makes request to backend, and redirects to /diningcommonsmenuitem", async () => {
+    test("on submit, makes request to backend, and redirects to /UCSBDiningCommonsMenuItem", async () => {
 
         const queryClient = new QueryClient();
         const UCSBDiningCommonsMenuItem = {
@@ -63,7 +63,7 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
             station: "Italian Kitchen"   
         };
 
-        axiosMock.onPost("/api/diningcommonsmenuitem/post").reply(202, UCSBDiningCommonsMenuItem);
+        axiosMock.onPost("/api/UCSBDiningCommonsMenuItem/post").reply(202, UCSBDiningCommonsMenuItem);
 
         render(
             <QueryClientProvider client={queryClient}>
@@ -100,7 +100,7 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
 
         // assert - check that the toast was called with the expected message
         expect(mockToast).toBeCalledWith("New UCSBDiningCommonsMenuItem Created - id: 3 name: Spaghetti with Meatballs, diningCommonsCode: Carrillo, station: Italian Kitchen");
-        expect(mockNavigate).toBeCalledWith({ "to": "/diningcommonsmenuitem" });
+        expect(mockNavigate).toBeCalledWith({ "to": "/UCSBDiningCommonsMenuItem" });
 
     });
 });
