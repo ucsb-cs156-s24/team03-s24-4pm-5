@@ -111,16 +111,18 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
                 <UCSBDiningCommonsMenuItemForm submitAction={mockSubmitAction} />
             </Router>
         );
-        await screen.findByTestId("UCSBDiningCommonsMenuItemForm-name");
+        await screen.findByTestId("UCSBDiningCommonsMenuItemForm-id");
 
+        const idField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-id");
         const nameField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-name");
         const dcField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-diningCommonsCode");
         const stationField = screen.getByTestId("UCSBDiningCommonsMenuItemForm-station");
         const submitButton = screen.getByTestId("UCSBDiningCommonsMenuItemForm-submit");
 
-        fireEvent.change(nameField, { target: { value: 'burger' } });
-        fireEvent.change(dcField, { target: { value: 'dlg' } });
-        fireEvent.change(stationField, { target: { value: 'grill' } });
+        fireEvent.change(idField, { target: { value: 3 } });
+        fireEvent.change(nameField, { target: { value: 'Spaghetti with Meatballs' } });
+        fireEvent.change(dcField, { target: { value: 'Carillo' } });
+        fireEvent.change(stationField, { target: { value: 'Italian Kitchen' } });
         fireEvent.click(submitButton);
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
