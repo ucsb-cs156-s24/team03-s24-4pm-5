@@ -57,7 +57,7 @@ ThreeItemsAdminUser.parameters = {
         rest.get('/api/MenuItemReview/all', (_req, res, ctx) => {
             return res(ctx.json(menuItemReviewFixtures.threeReviews));
         }),
-        rest.delete('/api/MenuItemReview', (req, res, ctx) => {
+        rest.delete('/api/MenuItemReview', (req, res, ctx) => { 
             window.alert("DELETE: " + JSON.stringify(req.url));
             return res(ctx.status(200),ctx.json({}));
         }),
