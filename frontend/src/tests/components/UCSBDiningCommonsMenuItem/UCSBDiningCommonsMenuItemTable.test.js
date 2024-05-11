@@ -13,10 +13,10 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedNavigate
 }));
 
-describe("RestaurantTable tests", () => {
+describe("UCSBDiningCommonsMenuItemTable tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["id", "Name", "DiningCommonsCode", "Station"];
+  const expectedHeaders = ["Id", "Name", "DiningCommonsCode", "Station"];
   const expectedFields = ["id", "name", "diningCommonsCode", "station"];
   const testId = "UCSBDiningCommonsMenuItemTable";
 
@@ -27,24 +27,24 @@ describe("RestaurantTable tests", () => {
 
     // act
     render(
-      <QueryClientProvider client={queryClient}>
-        <MemoryRouter>
-          <UCSBDiningCommonsMenuItemTable UCSBDiningCommonsMenuItem={[]} currentUser={currentUser} />
-        </MemoryRouter>
-      </QueryClientProvider>
-    );
-
-    // assert
-    expectedHeaders.forEach((headerText) => {
-      const header = screen.getByText(headerText);
-      expect(header).toBeInTheDocument();
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <UCSBDiningCommonsMenuItemTable UCSBDiningCommonsMenuItem={[]} currentUser={currentUser} />
+          </MemoryRouter>
+        </QueryClientProvider>
+      );
+  
+      // assert
+      expectedHeaders.forEach((headerText) => {
+        const header = screen.getByText(headerText);
+        expect(header).toBeInTheDocument();
+      });
+  
+      expectedFields.forEach((field) => {
+        const fieldElement = screen.queryByTestId(`${testId}-cell-row-0-col-${field}`);
+        expect(fieldElement).not.toBeInTheDocument();
+      });
     });
-
-    expectedFields.forEach((field) => {
-      const fieldElement = screen.queryByTestId(`${testId}-cell-row-0-col-${field}`);
-      expect(fieldElement).not.toBeInTheDocument();
-    });
-  });
 
   test("Has the expected column headers, content and buttons for admin user", () => {
     // arrange
@@ -77,8 +77,8 @@ describe("RestaurantTable tests", () => {
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("Spaghetti with Meatballs");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-diningCommonsCode`)).toHaveTextContent("Carrillo");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-station`)).toHaveTextContent("Italian Kitchen");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-diningCommonsCode`)).toHaveTextContent("Carrillo");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-station`)).toHaveTextContent("Italian Kitchen");
 
     const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
@@ -121,8 +121,8 @@ describe("RestaurantTable tests", () => {
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("Spaghetti with Meatballs");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-diningCommonsCode`)).toHaveTextContent("Carrillo");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-station`)).toHaveTextContent("Italian Kitchen");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-diningCommonsCode`)).toHaveTextContent("Carrillo");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-station`)).toHaveTextContent("Italian Kitchen");
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();

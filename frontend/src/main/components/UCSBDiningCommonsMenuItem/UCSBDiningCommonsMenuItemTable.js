@@ -6,10 +6,10 @@ import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/restaurantU
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function UCSBDiningCommonsMenuItem({
-    UCSBdiningCommonsMenuItem,
+export default function UCSBDiningCommonsMenuItemTable({
+    UCSBDiningCommonsMenuItem,
     currentUser,
-    testIdPrefix = "UCSBDiningCommonsMenuItem" }) {
+    testIdPrefix = "UCSBDiningCommonsMenuItemTable" }) {
 
     const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ export default function UCSBDiningCommonsMenuItem({
 
     const columns = [
         {
-            Header: 'id',
+            Header: 'Id',
             accessor: 'id', // accessor is the "key" in the data
         },
 
