@@ -28,7 +28,21 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
 
 
             <Row>
-
+                {initialContents && (
+                    <Col>
+                        <Form.Group className="mb-3" >
+                            <Form.Label htmlFor="id">id</Form.Label>
+                            <Form.Control
+                                data-testid={"HelpRequestForm-id"}
+                                id="id"
+                                type="text"
+                                {...register("id")}
+                                value={initialContents.id}
+                                disabled
+                            />
+                        </Form.Group>
+                    </Col>
+                )}
 
                 <Col>
                     <Form.Group className="mb-3" >
