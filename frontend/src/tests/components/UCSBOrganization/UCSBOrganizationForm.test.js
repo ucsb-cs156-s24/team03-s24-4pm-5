@@ -94,9 +94,9 @@ describe("UCSBOrganizationForm tests", () => {
         const inactiveField = screen.getByTestId("UCSBOrganizationForm-inactive");
         const submitButton = screen.getByTestId("UCSBOrganizationForm-submit");
 
-        fireEvent.change(orgCodeField, { target: { value: 'DSP' } });
-        fireEvent.change(orgTranslationShortField, { target: { value: 'Delta Sig' } });
-        fireEvent.change(orgTranslationField, { target: { value: 'Delta Sigma Pi' } });
+        fireEvent.change(orgCodeField, { target: { value: 'CD' } });
+        fireEvent.change(orgTranslationShortField, { target: { value: 'Coder' } });
+        fireEvent.change(orgTranslationField, { target: { value: 'CoderSB' } });
         fireEvent.change(inactiveField, { target: { value: true } });
         fireEvent.click(submitButton);
 
