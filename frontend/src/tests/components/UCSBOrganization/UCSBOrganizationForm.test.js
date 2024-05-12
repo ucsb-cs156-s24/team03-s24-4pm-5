@@ -97,7 +97,7 @@ describe("UCSBOrganizationForm tests", () => {
         fireEvent.change(orgCodeField, { target: { value: 'DSP' } });
         fireEvent.change(orgTranslationShortField, { target: { value: 'Delta Sig' } });
         fireEvent.change(orgTranslationField, { target: { value: 'Delta Sigma Pi' } });
-        fireEvent.change(inactiveField, { target: { value: false } });
+        fireEvent.change(inactiveField, { target: { value: true } });
         fireEvent.click(submitButton);
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
