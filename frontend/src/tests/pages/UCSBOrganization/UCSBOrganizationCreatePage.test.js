@@ -110,7 +110,7 @@ describe("UCSBOrganizationCreatePage tests", () => {
         });
 
         // assert - check that the toast was called with the expected message
-        expect(mockToast).toBeCalledWith("New UCSB Organization Created - orgCode: CD orgTranslationShort: Coder orgTranslation: CoderSB inactive: false");
+        expect(mockToast).toBeCalledWith("New UCSB Organization Created - orgCode: CD orgTranslationShort: Coder");
         expect(mockNavigate).toBeCalledWith({ "to": "/UCSBOrganization" });
 
     });

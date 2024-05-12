@@ -18,7 +18,7 @@ export default function OrganizationCreatePage({storybook=false}) {
   });
 
   const onSuccess = (UCSBOrganization) => {
-    toast(`New UCSB Organization Created - orgCode: ${UCSBOrganization.orgCode} orgTranslationShort: ${UCSBOrganization.orgTranslationShort} orgTranslation: ${UCSBOrganization.orgTranslation} inactive: ${UCSBOrganization.inactive}`);
+    toast(`New UCSB Organization Created - orgCode: ${UCSBOrganization.orgCode} orgTranslationShort: ${UCSBOrganization.orgTranslationShort}`);
   }
 
   const mutation = useBackendMutation(
