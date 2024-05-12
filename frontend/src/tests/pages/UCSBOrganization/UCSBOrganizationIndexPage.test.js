@@ -6,7 +6,6 @@ import { MemoryRouter } from "react-router-dom";
 import mockConsole from "jest-mock-console";
 import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
 
-
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";

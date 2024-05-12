@@ -98,7 +98,6 @@ describe("UCSBOrganizationForm tests", () => {
         fireEvent.change(orgTranslationShortField, { target: { value: 'Coder' } });
         fireEvent.change(orgTranslationField, { target: { value: 'CoderSB' } });
         fireEvent.change(inactiveField, { target: { value: false } });
-
         fireEvent.click(submitButton);
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
