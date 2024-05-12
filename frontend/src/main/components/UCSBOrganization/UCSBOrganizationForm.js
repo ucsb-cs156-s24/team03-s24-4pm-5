@@ -83,7 +83,8 @@ function UCSBOrganizationForm({ initialContents, submitAction, buttonLabel = "Cr
                         pattern: inactive_regex
                     })}
                 />
-            <Form.Control.Feedback type="invalid">
+
+                <Form.Control.Feedback type="invalid">
                     {errors.inactive?.message}
                 </Form.Control.Feedback>
             </Form.Group>
