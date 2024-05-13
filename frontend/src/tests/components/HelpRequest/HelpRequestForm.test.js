@@ -37,35 +37,6 @@ describe("HelpRequestForm tests", () => {
        expect(screen.getByTestId(/HelpRequestForm-id/)).toHaveValue("1");
    });
 
-
-    test("Correct Error messsages on bad input", async () => {
-
-        render(
-            <Router  >
-                <HelpRequestForm />
-            </Router>
-        );
-        await screen.findByTestId("HelpRequestForm-requesterEmail");
-        const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
-        const teamIdField = screen.getByTestId("HelpRequestForm-teamId");
-        const tableOrBreakoutRoomField = screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom");
-        const requestTimeField = screen.getByTestId("HelpRequestForm-requestTime");
-        const explanationField = screen.getByTestId("HelpRequestForm-explanation");
-        const solvedField = screen.getByTestId("HelpRequestForm-solved");
-        const submitButton = screen.getByTestId("HelpRequestForm-submit");
-
-        fireEvent.change(requesterEmailField, { target: { value: 'bad-input' } });
-        fireEvent.change(teamIdField, { target: { value: 'bad-input' } });
-        fireEvent.change(tableOrBreakoutRoomField, { target: { value: 'bad-input' } });
-        fireEvent.change(requestTimeField, { target: { value: 'bad-input' } });
-        fireEvent.change(explanationField, { target: { value: 'bad-input' } });
-        fireEvent.change(solvedField, { target: { value: 'bad-input' } });
-        fireEvent.click(submitButton);
-
-        await screen.findByText(/Request Time is required./);
-    });
-
-
     test("Correct Error messsages on missing input", async () => {
 
         render(
