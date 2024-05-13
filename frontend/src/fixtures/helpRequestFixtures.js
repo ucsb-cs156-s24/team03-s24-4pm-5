@@ -15,7 +15,7 @@ const helpRequestFixtures = {
     threeHelpRequests:
     [
         {
-            "id": 2,
+            "id": 1,
             "requesterEmail": "ww@ucsb.edu",
             "teamId": "4pm-6",
             "tableOrBreakoutRoom": "6",
@@ -25,7 +25,7 @@ const helpRequestFixtures = {
         },
 
         {
-            "id": 3,
+            "id": 2,
             "requesterEmail": "winstonw@ucsb.edu",
             "teamId": "4pm-7",
             "tableOrBreakoutRoom": "7",
@@ -35,7 +35,7 @@ const helpRequestFixtures = {
         },
 
         {
-            "id": 4,
+            "id": 3,
             "requesterEmail": "wwang@ucsb.edu",
             "teamId": "4pm-8",
             "tableOrBreakoutRoom": "8",
