@@ -83,12 +83,16 @@ describe("HelpRequestForm tests", () => {
         fireEvent.change(tableOrBreakoutRoomField, { target: { value: '5' } });
         fireEvent.change(requestTimeField, { target: { value: '2020-01-01T00:00:00' } });
         fireEvent.change(explanationField, { target: { value: 'reason' } });
-        fireEvent.change(solvedField, { target: { value: 'true' } });
+        fireEvent.click(solvedField)
         fireEvent.click(submitButton);
 
         await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
+        expect(screen.queryByText(/Requester Email is required./)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Team Id is required./)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Table Or Breakout Room is required./)).not.toBeInTheDocument();
         expect(screen.queryByText(/Request Time is required./)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Explanation is required./)).not.toBeInTheDocument();
 
     });
 
