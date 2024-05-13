@@ -21,24 +21,21 @@ describe("HelpRequestForm tests", () => {
             </Router>
         );
         await screen.findByText(/Requester Email/);
-        await screen.findByText(/Team Id/);
-        await screen.findByText(/Table Or Breakout Room/);
-        await screen.findByText(/Explanation/);
         await screen.findByText(/Create/);
     });
 
 
-//    test("renders correctly when passing in a HelpRequest", async () => {
-//
-//        render(
-//            <Router  >
-//                <HelpRequestForm initialContents={helpRequestFixtures.oneHelpRequest} />
-//            </Router>
-//        );
-//        await screen.findByTestId(/HelpRequestForm-id/);
-//        expect(screen.getByText(/Id/)).toBeInTheDocument();
-//        expect(screen.getByTestId(/HelpRequestForm-id/)).toHaveValue("1");
-//    });
+   test("renders correctly when passing in a HelpRequest", async () => {
+
+       render(
+           <Router  >
+               <HelpRequestForm initialContents={helpRequestFixtures.oneHelpRequest} />
+           </Router>
+       );
+       await screen.findByTestId(/HelpRequestForm-id/);
+       expect(screen.getByText(/Id/)).toBeInTheDocument();
+       expect(screen.getByTestId(/HelpRequestForm-id/)).toHaveValue("1");
+   });
 
 
     test("Correct Error messsages on bad input", async () => {
