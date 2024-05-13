@@ -235,7 +235,12 @@
 <a name='L170'></a><a href='#L170'>170</a>
 <a name='L171'></a><a href='#L171'>171</a>
 <a name='L172'></a><a href='#L172'>172</a>
-<a name='L173'></a><a href='#L173'>173</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -257,9 +262,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -425,6 +435,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
 &nbsp;
     const navigate = useNavigate();
 &nbsp;
+&nbsp;
     // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
     // Note that even this complex regex may still need some tweaks
 &nbsp;
@@ -457,12 +468,12 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                     &lt;Form.Group className="mb-3" &gt;
                         &lt;Form.Label htmlFor="requesterEmail"&gt;Requester Email&lt;/Form.Label&gt;
                         &lt;Form.Control
-                            data-testid="HelpRequestForm-requesterEmail"
+                            data-testid={"HelpRequestForm-requesterEmail"}
                             id="requesterEmail"
                             type="text"
                             isInvalid={Boolean(errors.requesterEmail)}
                             {...register("requesterEmail", {
-                                required: "Requester Email is required.",
+                                required: "Requester Email is required."
                             })}
                         /&gt;
                         &lt;Form.Control.Feedback type="invalid"&gt;
@@ -470,16 +481,17 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                         &lt;/Form.Control.Feedback&gt;
                     &lt;/Form.Group&gt;
                 &lt;/Col&gt;
+&nbsp;
                 &lt;Col&gt;
                     &lt;Form.Group className="mb-3" &gt;
                         &lt;Form.Label htmlFor="teamId"&gt;Team Id&lt;/Form.Label&gt;
                         &lt;Form.Control
-                            data-testid="HelpRequestForm-teamId"
+                            data-testid={"HelpRequestForm-teamId"}
                             id="teamId"
                             type="text"
                             isInvalid={Boolean(errors.teamId)}
                             {...register("teamId", {
-                                required: "Team Id is required.",
+                                required: "Team Id is required."
                             })}
                         /&gt;
                         &lt;Form.Control.Feedback type="invalid"&gt;
@@ -488,19 +500,16 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                     &lt;/Form.Group&gt;
                 &lt;/Col&gt;
 &nbsp;
-            &lt;/Row&gt;
-&nbsp;
-            &lt;Row&gt;
                 &lt;Col&gt;
                     &lt;Form.Group className="mb-3" &gt;
                         &lt;Form.Label htmlFor="tableOrBreakoutRoom"&gt;Table Or Breakout Room&lt;/Form.Label&gt;
                         &lt;Form.Control
-                            data-testid="HelpRequestForm-tableOrBreakoutRoom"
+                            data-testid={"HelpRequestForm-tableOrBreakoutRoom"}
                             id="tableOrBreakoutRoom"
                             type="text"
                             isInvalid={Boolean(errors.tableOrBreakoutRoom)}
                             {...register("tableOrBreakoutRoom", {
-                                required: "Table or Breakout Room is required.",
+                                required: "Table Or Breakout Room is required."
                             })}
                         /&gt;
                         &lt;Form.Control.Feedback type="invalid"&gt;
@@ -508,31 +517,35 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                         &lt;/Form.Control.Feedback&gt;
                     &lt;/Form.Group&gt;
                 &lt;/Col&gt;
+                
                 &lt;Col&gt;
                     &lt;Form.Group className="mb-3" &gt;
                         &lt;Form.Label htmlFor="requestTime"&gt;Request Time (iso format)&lt;/Form.Label&gt;
                         &lt;Form.Control
-                            data-testid="HelpRequestForm-requestTime"
+                            data-testid={"HelpRequestForm-requestTime"}
                             id="requestTime"
                             type="datetime-local"
                             isInvalid={Boolean(errors.requestTime)}
                             {...register("requestTime", { required: true, pattern: isodate_regex })}
                         /&gt;
                         &lt;Form.Control.Feedback type="invalid"&gt;
-                            {errors.requestTime &amp;&amp; 'Request Time is required. '}
+                            {errors.requestTime &amp;&amp; 'Request Time is required.'}
                         &lt;/Form.Control.Feedback&gt;
                     &lt;/Form.Group&gt;
                 &lt;/Col&gt;
+            &lt;/Row&gt;
+&nbsp;
+            &lt;Row&gt;
                 &lt;Col&gt;
                     &lt;Form.Group className="mb-3" &gt;
                         &lt;Form.Label htmlFor="explanation"&gt;Explanation&lt;/Form.Label&gt;
                         &lt;Form.Control
-                            data-testid="HelpRequestForm-explanation"
+                            data-testid={"HelpRequestForm-explanation"}
                             id="explanation"
                             type="text"
                             isInvalid={Boolean(errors.explanation)}
                             {...register("explanation", {
-                                required: "Explanation is required.",
+                                required: "Explanation is required."
                             })}
                         /&gt;
                         &lt;Form.Control.Feedback type="invalid"&gt;
@@ -540,12 +553,14 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                         &lt;/Form.Control.Feedback&gt;
                     &lt;/Form.Group&gt;
                 &lt;/Col&gt;
+&nbsp;
                 &lt;Col&gt;
-                &lt;Form.Group className="mb-3" &gt;
+                    &lt;Form.Group className="mb-3" &gt;
+                        &lt;Form.Label htmlFor="solved"&gt;Solved&lt;/Form.Label&gt;
                         &lt;Form.Check
-                            type="switch"
-                            data-testid="HelpRequestForm-solved"
+                            data-testid={"HelpRequestForm-solved"}
                             id="solved"
+                            type="switch"
                             label="Solved?"
                             {...register("solved", {})}
                         /&gt;
@@ -560,14 +575,14 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                 &lt;Col&gt;
                     &lt;Button
                         type="submit"
-                        data-testid="HelpRequestForm-submit"
+                        data-testid={"HelpRequestForm-submit"}
                     &gt;
                         {buttonLabel}
                     &lt;/Button&gt;
                     &lt;Button
                         variant="Secondary"
                         onClick={() =&gt; navigate(-1)}
-                        data-testid="HelpRequestForm-cancel"
+                        data-testid={"HelpRequestForm-cancel"}
                     &gt;
                         Cancel
                     &lt;/Button&gt;
@@ -586,7 +601,7 @@ export default HelpRequestForm;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun May 12 2024 18:24:55 GMT-0700 (Pacific Daylight Time)
+                at Sun May 12 2024 18:26:46 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
