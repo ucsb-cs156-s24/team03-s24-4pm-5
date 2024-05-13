@@ -33,7 +33,7 @@ describe("HelpRequestForm tests", () => {
            </Router>
        );
        await screen.findByTestId(/HelpRequestForm-id/);
-       expect(screen.getByText(/Id/)).toBeInTheDocument();
+       expect(screen.getByText(/id/)).toBeInTheDocument();
        expect(screen.getByTestId(/HelpRequestForm-id/)).toHaveValue("1");
    });
 
