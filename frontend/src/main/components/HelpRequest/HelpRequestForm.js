@@ -90,7 +90,7 @@ function HelpRequestForm({ initialContents, submitAction, buttonLabel = "Create"
                             type="text"
                             isInvalid={Boolean(errors.tableOrBreakoutRoom)}
                             {...register("tableOrBreakoutRoom", {
-                                required: "Table Or Breakout Room is required."
+                                required: "Table or Breakout Room is required."
                             })}
                         />
                         <Form.Control.Feedback type="invalid">
