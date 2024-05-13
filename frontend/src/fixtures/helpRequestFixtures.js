@@ -14,14 +14,14 @@ const helpRequestFixtures = {
     [
         {
             "id": 1,
-            "requesterEmail": "ww@ucsb.edu",
-            "teamId": "4pm-6",
-            "tableOrBreakoutRoom": "6",
-            "requestTime": "2020-04-05T00:00:00",
-            "explanation": "frontend issue",
-            "solved": false      
+            "requesterEmail": "winstonwang@ucsb.edu",
+            "teamId": "4pm-5",
+            "tableOrBreakoutRoom": "5",
+            "requestTime": "2022-01-03T00:00:00",
+            "explanation": "dokku problem",
+            "solved": true   
         },
-
+        
         {
             "id": 2,
             "requesterEmail": "winstonw@ucsb.edu",
