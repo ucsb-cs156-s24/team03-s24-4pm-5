@@ -83,7 +83,7 @@ describe("HelpRequestCreatePage tests", () => {
         const requesterEmailField = screen.getByLabelText("Requester Email");
         expect(requesterEmailField).toBeInTheDocument();
 
-        const teamIdIField = screen.getByLabelText("Team Id");
+        const teamIdField = screen.getByLabelText("Team Id");
         expect(teamIdField).toBeInTheDocument();
 
         const tableOrBreakoutRoomField = screen.getByLabelText("Table Or Breakout Room");
@@ -106,7 +106,7 @@ describe("HelpRequestCreatePage tests", () => {
         fireEvent.change(tableOrBreakoutRoomField, { target: { value: '15' } })
         fireEvent.change(requestTimeField, { target: { value: '2020-01-01T00:00:00' } })
         fireEvent.change(explanationField, { target: { value: 'generic explanation' } })
-        fireEvent.click(solvedIField)
+        fireEvent.click(solvedField)
 
         fireEvent.click(createButton);
 
