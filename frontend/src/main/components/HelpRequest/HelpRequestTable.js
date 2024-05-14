@@ -26,6 +26,7 @@ export default function HelpRequestTable({ helpRequests, currentUser }) {
     // Stryker disable next-line all : TODO try to make a good test for this
     const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
 
+
     const columns = [
         {
             Header: 'id',
@@ -61,7 +62,7 @@ export default function HelpRequestTable({ helpRequests, currentUser }) {
         columns.push(ButtonColumn("Edit", "primary", editCallback, "HelpRequestTable"));
         columns.push(ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestTable"));
     } 
-    
+
     return <OurTable
         data={helpRequests}
         columns={columns}
