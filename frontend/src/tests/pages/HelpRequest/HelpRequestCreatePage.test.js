@@ -81,27 +81,32 @@ describe("HelpRequestCreatePage tests", () => {
         });
 
         const requesterEmailField = screen.getByLabelText("Requester Email");
-        const teamIdIField = screen.getByLabelText("Team Id");
-        const tableOrBreakoutRoomField = screen.getByLabelText("Table Or Breakout Room");
-        const requestTimeField = screen.getByLabelText("Request Time (iso format)");
-        const explanationField = screen.getByLabelText("Explanation");
-        const solvedField = screen.getByLabelText("Solved");
-        const createButton = screen.getByText("Create");
-
         expect(requesterEmailField).toBeInTheDocument();
+
+        const teamIdIField = screen.getByLabelText("Team Id");
         expect(teamIdField).toBeInTheDocument();
+
+        const tableOrBreakoutRoomField = screen.getByLabelText("Table Or Breakout Room");
         expect(tableOrBreakoutRoomField).toBeInTheDocument();
+
+        const requestTimeField = screen.getByLabelText("Request Time (iso format)");
         expect(requestTimeField).toBeInTheDocument();
+
+        const explanationField = screen.getByLabelText("Explanation");
         expect(explanationField).toBeInTheDocument();
+
+        const solvedField = screen.getByLabelText("Solved");
         expect(solvedField).toBeInTheDocument();
+
+        const createButton = screen.getByText("Create");
         expect(createButton).toBeInTheDocument();
 
-        fireEvent.change(requesterEmailInput, { target: { value: 'wwang@gmail.com' } })
-        fireEvent.change(teamIdInput, { target: { value: '2pm-2' } })
-        fireEvent.change(tableOrBreakoutRoomInput, { target: { value: '15' } })
-        fireEvent.change(requestTimeInput, { target: { value: '2020-01-01T00:00:00' } })
-        fireEvent.change(explanationInput, { target: { value: 'generic explanation' } })
-        fireEvent.click(solvedInput)
+        fireEvent.change(requesterEmailField, { target: { value: 'wwang@gmail.com' } })
+        fireEvent.change(teamIdField, { target: { value: '2pm-2' } })
+        fireEvent.change(tableOrBreakoutRoomField, { target: { value: '15' } })
+        fireEvent.change(requestTimeField, { target: { value: '2020-01-01T00:00:00' } })
+        fireEvent.change(explanationField { target: { value: 'generic explanation' } })
+        fireEvent.click(solvedIField)
 
         fireEvent.click(createButton);
 
