@@ -1,31 +1,29 @@
 const helpRequestFixtures = {
     oneHelpRequest:
-    [
-      {
-       "id": 1,
-        "requesterEmail": "winstonwang@ucsb.edu",
-        "teamId": "4pm-5",
-        "tableOrBreakoutRoom": "5",
-        "requestTime": "2022-01-03T00:00:00",
-        "explanation": "dokku problem",
-        "solved": true   
-      }
-    ],
+    {
+    "id": 1,
+    "requesterEmail": "winstonwang@ucsb.edu",
+    "teamId": "4pm-5",
+    "tableOrBreakoutRoom": "5",
+    "requestTime": "2022-01-03T00:00:00",
+    "explanation": "dokku problem",
+    "solved": true   
+    },
 
     threeHelpRequests:
     [
         {
-            "id": 2,
-            "requesterEmail": "ww@ucsb.edu",
-            "teamId": "4pm-6",
-            "tableOrBreakoutRoom": "6",
-            "requestTime": "2020-04-05T00:00:00",
-            "explanation": "frontend issue",
-            "solved": false      
+            "id": 1,
+            "requesterEmail": "winstonwang@ucsb.edu",
+            "teamId": "4pm-5",
+            "tableOrBreakoutRoom": "5",
+            "requestTime": "2022-01-03T00:00:00",
+            "explanation": "dokku problem",
+            "solved": true   
         },
-
+        
         {
-            "id": 3,
+            "id": 2,
             "requesterEmail": "winstonw@ucsb.edu",
             "teamId": "4pm-7",
             "tableOrBreakoutRoom": "7",
@@ -35,7 +33,7 @@ const helpRequestFixtures = {
         },
 
         {
-            "id": 4,
+            "id": 3,
             "requesterEmail": "wwang@ucsb.edu",
             "teamId": "4pm-8",
             "tableOrBreakoutRoom": "8",
