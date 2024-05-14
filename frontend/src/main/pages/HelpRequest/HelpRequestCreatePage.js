@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 export default function HelpRequestCreatePage({storybook=false}) {
 
   const objectToAxiosParams = (helpRequest) => ({
-    url: "/api/HelpRequest/post",
+    url: "/api/helprequest/post",
     method: "POST",
     params: {
      requesterEmail: helpRequest.requesterEmail,
