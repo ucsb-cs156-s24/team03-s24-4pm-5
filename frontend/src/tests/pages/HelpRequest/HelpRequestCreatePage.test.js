@@ -52,7 +52,7 @@ describe("HelpRequestCreatePage tests", () => {
         );
     });
 
-    test("on submit, makes request to backend, and redirects to /helprequest", async () => {
+    test("on submit, makes request to backend, and redirects to quest", async () => {
 
         const queryClient = new QueryClient();
 
@@ -66,7 +66,7 @@ describe("HelpRequestCreatePage tests", () => {
             solved: true
         }
 
-        axiosMock.onPost("/api/helprequest/post").reply(202, helpRequest);
+        axiosMock.onPost("/apiquest/post").reply(202, helpRequest);
 
         render(
             <QueryClientProvider client={queryClient}>
@@ -123,7 +123,7 @@ describe("HelpRequestCreatePage tests", () => {
 
         // assert - check that the toast was called with the expected message
         expect(mockToast).toBeCalledWith("New help request Created - id: 1 requesterEmail: wwang@gmail.com");
-        expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
+        expect(mockNavigate).toBeCalledWith({ "to": "quest" });
 
     });
 });
