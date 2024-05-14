@@ -33,7 +33,7 @@ export default function HelpRequestIndexPage() {
         } 
       }
 
-      return (
+    return (
         <BasicLayout>
             <div className="pt-2">
                 {createButton()}
