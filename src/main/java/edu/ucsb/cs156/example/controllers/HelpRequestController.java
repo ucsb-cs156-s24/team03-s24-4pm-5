@@ -30,7 +30,7 @@ import java.time.LocalDateTime;
 
 
 @Tag(name = "HelpRequests")
-@RequestMapping("/api/helpRequest")
+@RequestMapping("/api/HelpRequest")
 @RestController
 @Slf4j
 public class HelpRequestController extends ApiController {
