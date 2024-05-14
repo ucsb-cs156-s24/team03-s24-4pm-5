@@ -37,7 +37,7 @@ export default function HelpRequestCreatePage({storybook=false}) {
   }
 
   if (isSuccess && !storybook) {
-    return <Navigate to="/HelpRequest" />
+    return <Navigate to="/helprequest" />
   }
 
   return (
