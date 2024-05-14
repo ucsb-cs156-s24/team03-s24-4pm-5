@@ -45,7 +45,7 @@ describe("HelpRequestIndexPage tests", () => {
 
     test("Renders with Create Button for admin user", async () => {
         setupAdminUser();
-        axiosMock.onGet("/api/helprequest/all").reply(200, []);
+        axiosMock.onGet("/api/HelpRequest/all").reply(200, []);
 
         render(
             <QueryClientProvider client={queryClient}>
@@ -59,13 +59,13 @@ describe("HelpRequestIndexPage tests", () => {
             expect(screen.getByText(/Create Help Request/)).toBeInTheDocument();
         });
         const button = screen.getByText(/Create Help Request/);
-        expect(button).toHaveAttribute("href", "/helprequest/create");
+        expect(button).toHaveAttribute("href", "/HelpRequest/create");
         expect(button).toHaveAttribute("style", "float: right;");
     });
 
     test("renders three help requests correctly for regular user", async () => {
         setupUserOnly();
-        axiosMock.onGet("/api/helprequest/all").reply(200, helpRequestFixtures.threeHelpRequests);
+        axiosMock.onGet("/api/HelpRequest/all").reply(200, helpRequestFixtures.threeHelpRequests);
 
         render(
             <QueryClientProvider client={queryClient}>
@@ -105,7 +105,7 @@ describe("HelpRequestIndexPage tests", () => {
     test("renders empty table when backend unavailable, user only", async () => {
         setupUserOnly();
 
-        axiosMock.onGet("/api/helprequest/all").timeout();
+        axiosMock.onGet("/api/HelpRequest/all").timeout();
 
         const restoreConsole = mockConsole();
 
@@ -120,7 +120,7 @@ describe("HelpRequestIndexPage tests", () => {
         await waitFor(() => { expect(axiosMock.history.get.length).toBeGreaterThanOrEqual(1); });
 
         const errorMessage = console.error.mock.calls[0][0];
-        expect(errorMessage).toMatch("Error communicating with backend via GET on /api/helprequest/all");
+        expect(errorMessage).toMatch("Error communicating with backend via GET on /api/HelpRequest/all");
         restoreConsole();
 
     });
@@ -128,8 +128,8 @@ describe("HelpRequestIndexPage tests", () => {
     test("what happens when you click delete, admin", async () => {
         setupAdminUser();
 
-        axiosMock.onGet("/api/helprequest/all").reply(200, helpRequestFixtures.threeHelpRequests);
-        axiosMock.onDelete("/api/helprequest").reply(200, "HelpRequest with id 1 was deleted");
+        axiosMock.onGet("/api/HelpRequest/all").reply(200, helpRequestFixtures.threeHelpRequests);
+        axiosMock.onDelete("/api/HelpRequest").reply(200, "HelpRequest with id 1 was deleted");
 
 
         render(
@@ -153,8 +153,8 @@ describe("HelpRequestIndexPage tests", () => {
         await waitFor(() => { expect(mockToast).toBeCalledWith("HelpRequest with id 1 was deleted") });
 
         await waitFor(() => { expect(axiosMock.history.delete.length).toBe(1); });
-        expect(axiosMock.history.delete[0].url).toBe("/api/helprequest");
-        expect(axiosMock.history.delete[0].url).toBe("/api/helprequest");
+        expect(axiosMock.history.delete[0].url).toBe("/api/HelpRequest");
+        expect(axiosMock.history.delete[0].url).toBe("/api/HelpRequest");
         expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
     });
 
