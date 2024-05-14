@@ -62,7 +62,6 @@ export default function HelpRequestTable({ helpRequests, currentUser }) {
         columns.push(ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestTable"));
     } 
 
-    console.log(helpRequests);
     helpRequests.forEach(function(helpRequest) {
         helpRequest.solved = helpRequest.solved.toString();
     });
