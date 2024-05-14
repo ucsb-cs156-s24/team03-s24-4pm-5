@@ -117,7 +117,7 @@ describe("HelpRequestCreatePage tests", () => {
         });
 
         // assert - check that the toast was called with the expected message
-        expect(mockToast).toBeCalledWith("New help request Created - id: 1 requesterEmail: "wwang@gmail.com");
+        expect(mockToast).toBeCalledWith("New help request Created - id: 1 requesterEmail: wwang@gmail.com");
         expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
 
     });
