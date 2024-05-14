@@ -11,10 +11,10 @@ export default function HelpRequestEditPage({storybook=false}) {
     const { data: helpRequest, _error, _status } =
         useBackend(
             // Stryker disable next-line all : don't test internal caching of React Query
-            [`/api/helprequest?id=${id}`],
+            [`/api/HelpRequest?id=${id}`],
             {  // Stryker disable next-line all : GET is the default, so mutating this to "" doesn't introduce a bug
                 method: "GET",
-                url: `/api/helprequest`,
+                url: `/api/HelpRequest`,
                 params: {
                     id
                 }
@@ -22,7 +22,7 @@ export default function HelpRequestEditPage({storybook=false}) {
         );
 
     const objectToAxiosPutParams = (helpRequest) => ({
-        url: "/api/helprequest",
+        url: "/api/HelpRequest",
         method: "PUT",
         params: {
             id: helpRequest.id,
@@ -45,7 +45,7 @@ export default function HelpRequestEditPage({storybook=false}) {
       objectToAxiosPutParams,
       { onSuccess },
       // Stryker disable next-line all : hard to set up test for caching
-      [`/api/helprequest?id=${id}`]
+      [`/api/HelpRequest?id=${id}`]
   );
 
   const { isSuccess } = mutation
