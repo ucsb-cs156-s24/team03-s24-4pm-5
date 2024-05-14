@@ -61,7 +61,7 @@ describe("HelpRequestCreatePage tests", () => {
             requesterEmail: "wwang@gmail.com",
             teamId: "2pm-2",
             tableOrBreakoutRoom: "15",
-            requestTime: "2020-01-01T00:00:00",
+            requestTime: "2020-01-01T00:00",
             explanation: "generic explanation",
             solved: true
         }
@@ -104,7 +104,7 @@ describe("HelpRequestCreatePage tests", () => {
         fireEvent.change(requesterEmailField, { target: { value: 'wwang@gmail.com' } })
         fireEvent.change(teamIdField, { target: { value: '2pm-2' } })
         fireEvent.change(tableOrBreakoutRoomField, { target: { value: '15' } })
-        fireEvent.change(requestTimeField, { target: { value: '2020-01-01T00:00:00' } })
+        fireEvent.change(requestTimeField, { target: { value: '2020-01-01T00:00' } })
         fireEvent.change(explanationField, { target: { value: 'generic explanation' } })
         fireEvent.click(solvedField)
 
@@ -116,7 +116,7 @@ describe("HelpRequestCreatePage tests", () => {
             requesterEmail: "wwang@gmail.com",
             teamId: "2pm-2",
             tableOrBreakoutRoom: "15",
-            requestTime: "2020-01-01T00:00:00",
+            requestTime: "2020-01-01T00:00",
             explanation: "generic explanation",
             solved: true
         });
