@@ -13,8 +13,8 @@ export default function HelpRequestIndexPage() {
     const { data: helpRequests, error: _error, status: _status } =
         useBackend(
             // Stryker disable next-line all : don't test internal caching of React Query
-            ["/api/helprequest/all"],
-            { method: "GET", url: "/api/helprequest/all" },
+            ["/api/HelpRequest/all"],
+            { method: "GET", url: "/api/HelpRequest/all" },
             // Stryker disable next-line all : don't test default value of empty list
             []
         );
@@ -24,7 +24,7 @@ export default function HelpRequestIndexPage() {
             return (
                 <Button
                     variant="primary"
-                    href="/helprequest/create"
+                    href="/HelpRequest/create"
                     style={{ float: "right" }}
                 >
                     Create Help Request
