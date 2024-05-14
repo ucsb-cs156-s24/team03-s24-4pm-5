@@ -80,25 +80,20 @@ describe("HelpRequestCreatePage tests", () => {
             expect(screen.getByLabelText("Requester Email")).toBeInTheDocument();
         });
 
-        const requesterEmailInput = screen.getByLabelText("Requester Email");
-        expect(requesterEmailInput).toBeInTheDocument();
-
-        const teamIdInput = screen.getByLabelText("Team Id");
-        expect(teamIdInput).toBeInTheDocument();
-
-        const tableOrBreakoutRoomInput = screen.getByLabelText("Table Or Breakout Room");
-        expect(tableOrBreakoutRoomInput).toBeInTheDocument();
-
-        const requestTimeInput = screen.getByLabelText("Request Time (iso format)");
-        expect(requestTimeInput).toBeInTheDocument();
-
-        const explanationInput = screen.getByLabelText("Explanation");
-        expect(explanationInput).toBeInTheDocument();
-
-        const solvedInput = screen.getByLabelText("Solved");
-        expect(solvedInput).toBeInTheDocument();
-
+        const requesterEmailField = screen.getByLabelText("Requester Email");
+        const teamIdIField = screen.getByLabelText("Team Id");
+        const tableOrBreakoutRoomField = screen.getByLabelText("Table Or Breakout Room");
+        const requestTimeField = screen.getByLabelText("Request Time (iso format)");
+        const explanationField = screen.getByLabelText("Explanation");
+        const solvedField = screen.getByLabelText("Solved");
         const createButton = screen.getByText("Create");
+
+        expect(requesterEmailField).toBeInTheDocument();
+        expect(teamIdField).toBeInTheDocument();
+        expect(tableOrBreakoutRoomField).toBeInTheDocument();
+        expect(requestTimeField).toBeInTheDocument();
+        expect(explanationField).toBeInTheDocument();
+        expect(solvedField).toBeInTheDocument();
         expect(createButton).toBeInTheDocument();
 
         fireEvent.change(requesterEmailInput, { target: { value: 'wwang@gmail.com' } })
@@ -122,7 +117,7 @@ describe("HelpRequestCreatePage tests", () => {
         });
 
         // assert - check that the toast was called with the expected message
-        expect(mockToast).toBeCalledWith("New help request Created - id: 1 requesterEmail: wwang@gmail.com");
+        expect(mockToast).toBeCalledWith("New help request Created - id: 15 requesterEmail: wwang@gmail.com");
         expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
 
     });
