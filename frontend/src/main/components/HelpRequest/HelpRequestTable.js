@@ -61,10 +61,6 @@ export default function HelpRequestTable({ helpRequests, currentUser }) {
         columns.push(ButtonColumn("Edit", "primary", editCallback, "HelpRequestTable"));
         columns.push(ButtonColumn("Delete", "danger", deleteCallback, "HelpRequestTable"));
     } 
-
-     helpRequests.forEach(function(helpRequest) {
-        helpRequest.solved = helpRequest.solved.toString();
-    });
     
     return <OurTable
         data={helpRequests}
