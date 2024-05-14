@@ -105,7 +105,7 @@ describe("HelpRequestCreatePage tests", () => {
         fireEvent.change(teamIdField, { target: { value: '2pm-2' } })
         fireEvent.change(tableOrBreakoutRoomField, { target: { value: '15' } })
         fireEvent.change(requestTimeField, { target: { value: '2020-01-01T00:00:00' } })
-        fireEvent.change(explanationField { target: { value: 'generic explanation' } })
+        fireEvent.change(explanationField, { target: { value: 'generic explanation' } })
         fireEvent.click(solvedIField)
 
         fireEvent.click(createButton);
