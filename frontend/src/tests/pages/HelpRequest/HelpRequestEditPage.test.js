@@ -43,7 +43,7 @@ describe("HelpRequestEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/helprequest", { params: { id: 17 } }).timeout();
+            axiosMock.onGet("/api/HelpRequest", { params: { id: 17 } }).timeout();
         });
 
         const queryClient = new QueryClient();
@@ -73,7 +73,7 @@ describe("HelpRequestEditPage tests", () => {
             axiosMock.resetHistory();
             axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.userOnly);
             axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
-            axiosMock.onGet("/api/helprequest", { params: { id: 17 } }).reply(200, {
+            axiosMock.onGet("/api/HelpRequest", { params: { id: 17 } }).reply(200, {
                 id: 1,
                 requesterEmail: "wwang@gmail.com",
                 teamId: "2pm-2",
@@ -82,7 +82,7 @@ describe("HelpRequestEditPage tests", () => {
                 explanation: "generic explanation",
                 solved: true
             });
-            axiosMock.onPut('/api/helprequest').reply(200, {
+            axiosMock.onPut('/api/HelpRequest').reply(200, {
                 id: "1",
                 requesterEmail: "winston@gmail.com",
                 teamId: "2pm-3",
@@ -145,7 +145,7 @@ describe("HelpRequestEditPage tests", () => {
             await waitFor(() => expect(mockToast).toBeCalled());
             expect(mockToast).toBeCalledWith("HelpRequest Updated - id: 1 requesterEmail: winston@gmail.com");
 
-            expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
+            expect(mockNavigate).toBeCalledWith({ "to": "/HelpRequest" });
 
             expect(axiosMock.history.put.length).toBe(1); // times called
             expect(axiosMock.history.put[0].params).toEqual({ id: 1 });            
@@ -210,7 +210,7 @@ describe("HelpRequestEditPage tests", () => {
 
             await waitFor(() => expect(mockToast).toBeCalled());
             expect(mockToast).toBeCalledWith("HelpRequest Updated - id: 1 requesterEmail: winston@gmail.com");
-            expect(mockNavigate).toBeCalledWith({ "to": "/helprequest" });
+            expect(mockNavigate).toBeCalledWith({ "to": "/HelpRequest" });
         });
 
 
