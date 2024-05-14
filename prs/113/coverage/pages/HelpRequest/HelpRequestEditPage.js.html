@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">69.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/13</span>
+                <span class='fraction'>9/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>4/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>9/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -142,13 +142,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,10 +154,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -173,28 +170,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -218,18 +218,18 @@ export default function HelpRequestEditPage({storybook=false}) {
     const { data: helpRequest, _error, _status } =
         useBackend(
             // Stryker disable next-line all : don't test internal caching of React Query
-            [`/api/helprequest?id=${id}`],
+            [`/api/HelpRequest?id=${id}`],
             {  // Stryker disable next-line all : GET is the default, so mutating this to "" doesn't introduce a bug
                 method: "GET",
-                url: `/api/helprequest`,
+                url: `/api/HelpRequest`,
                 params: {
                     id
                 }
             }
         );
 &nbsp;
-    const objectToAxiosPutParams = (helpRequest) =&gt; ({
-        url: "/api/helprequest",
+    const objectToAxiosPutParams = <span class="fstat-no" title="function not covered" >(h</span>elpRequest) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+        url: "/api/HelpRequest",
         method: "PUT",
         params: {
             id: helpRequest.id,
@@ -244,25 +244,25 @@ export default function HelpRequestEditPage({storybook=false}) {
          }
     });
 &nbsp;
-    const onSuccess = (helpRequest) =&gt; {
-      toast(`HelpRequest Updated - id: ${helpRequest.id} requesterEmail: ${helpRequest.requesterEmail}`);
+    const onSuccess = <span class="fstat-no" title="function not covered" >(h</span>elpRequest) =&gt; {
+<span class="cstat-no" title="statement not covered" >      toast(`HelpRequest Updated - id: ${helpRequest.id} requesterEmail: ${helpRequest.requesterEmail}`);</span>
   }
 &nbsp;
   const mutation = useBackendMutation(
       objectToAxiosPutParams,
       { onSuccess },
       // Stryker disable next-line all : hard to set up test for caching
-      [`/api/helprequest?id=${id}`]
+      [`/api/HelpRequest?id=${id}`]
   );
 &nbsp;
   const { isSuccess } = mutation
 &nbsp;
-    const onSubmit = async (data) =&gt; {
-        mutation.mutate(data);
+    const onSubmit = <span class="fstat-no" title="function not covered" >as</span>ync (data) =&gt; {
+<span class="cstat-no" title="statement not covered" >        mutation.mutate(data);</span>
     }
 &nbsp;
-    if (isSuccess &amp;&amp; !storybook) {
-        return &lt;Navigate to="/helprequest" /&gt;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (isSuccess &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >!storybook)</span> {
+<span class="cstat-no" title="statement not covered" >        return &lt;Navigate to="/helprequest" /&gt;</span>
     }
 &nbsp;
     return (
@@ -270,7 +270,7 @@ export default function HelpRequestEditPage({storybook=false}) {
           &lt;div className="pt-2"&gt;
               &lt;h1&gt;Edit Help Request&lt;/h1&gt;
               {
-                  helpRequest &amp;&amp; &lt;HelpRequestForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={helpRequest} /&gt;
+                  helpRequest &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;HelpRequestForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={helpRequest} /&gt;</span>
               }
           &lt;/div&gt;
       &lt;/BasicLayout&gt;
@@ -283,7 +283,7 @@ export default function HelpRequestEditPage({storybook=false}) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon May 13 2024 22:45:17 GMT-0700 (Pacific Daylight Time)
+                at Mon May 13 2024 22:46:00 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
