@@ -25,26 +25,26 @@ public class MenuItemReviewWebIT extends WebTestCase {
 
         page.getByText("Create MenuItemReview").click();
         assertThat(page.getByText("Create New MenuItemReview")).isVisible();
-        page.getByTestId("MenuItemReviewForm-itemId").fill("1");
+        page.getByTestId("MenuItemReviewForm-itemId").fill("12");
         page.getByTestId("MenuItemReviewForm-reviewerEmail").fill("stevenle@ucsb.edu");
-        page.getByTestId("MenuItemReviewForm-stars").fill("5");
-        page.getByTestId("MenuItemReviewForm-dateReviewed").fill("2022-02-02T00:00");
-        page.getByTestId("MenuItemReviewForm-comments").fill("Amazing");
+        page.getByTestId("MenuItemReviewForm-stars").fill("1");
+        page.getByTestId("MenuItemReviewForm-dateReviewed").fill("2022-04-20T12:00");
+        page.getByTestId("MenuItemReviewForm-comments").fill("Horrible");
         page.getByTestId("MenuItemReviewForm-submit").click();
 
-        assertThat(page.getByTestId("MenuItemReviewTable-cell-row-0-col-comments"))
-                .hasText("Amazing");
+        assertThat(page.getByTestId("MenuItemReviewTable-cell-row-0-col-itemId"))
+                .hasText("12");
 
         page.getByTestId("MenuItemReviewTable-cell-row-0-col-Edit-button").click();
         assertThat(page.getByText("Edit MenuItemReview")).isVisible();
-        page.getByTestId("MenuItemReviewTable-comments").fill("It's alright");
-        page.getByTestId("MenuItemReviewTable-submit").click();
+        page.getByTestId("MenuItemReviewForm-itemId").fill("13");
+        page.getByTestId("MenuItemReviewForm-submit").click();
 
-        assertThat(page.getByTestId("MenuItemReviewTable-cell-row-0-col-comments")).hasText("It's alright");
+        assertThat(page.getByTestId("MenuItemReviewTable-cell-row-0-col-itemId")).hasText("13");
 
         page.getByTestId("MenuItemReviewTable-cell-row-0-col-Delete-button").click();
 
-        assertThat(page.getByTestId("MenuItemReviewTable-cell-row-0-col-comments")).not().isVisible();
+        assertThat(page.getByTestId("MenuItemReviewTable-cell-row-0-col-itemId")).not().isVisible();
     }
 
     @Test
@@ -54,6 +54,6 @@ public class MenuItemReviewWebIT extends WebTestCase {
         page.getByText("MenuItemReview").click();
 
         assertThat(page.getByText("Create MenuItemReview")).not().isVisible();
-        assertThat(page.getByTestId("MenuItemReviewTable-cell-row-0-col-comments")).not().isVisible();
+        assertThat(page.getByTestId("MenuItemReviewTable-cell-row-0-col-itemId")).not().isVisible();
     }
 }
