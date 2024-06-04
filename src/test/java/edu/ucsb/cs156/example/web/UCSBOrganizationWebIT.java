@@ -34,6 +34,16 @@ public class UCSBOrganizationWebIT extends WebTestCase {
 
         assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgTranslation"))
                 .hasText("CoderSB");
+        page.getByTestId("UCSBOrganizationTable-cell-row-0-col-Edit-button").click();
+        assertThat(page.getByText("Edit UCSB Organization")).isVisible();
+        page.getByTestId("UCSBOrganizationForm-orgTranslation").fill("ABCD");
+        page.getByTestId("UCSBOrganizationForm-submit").click();
+
+        assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgTranslation")).hasText("ABCD");
+
+        page.getByTestId("UCSBOrganizationTable-cell-row-0-col-Delete-button").click();
+
+        assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgCode")).not().isVisible();
 
     }
 
@@ -44,6 +54,6 @@ public class UCSBOrganizationWebIT extends WebTestCase {
         page.getByText("UCSBOrganization").click();
 
         assertThat(page.getByText("Create Organization")).not().isVisible();
-        assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgTranslation")).not().isVisible();
+        assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgCode")).not().isVisible();
     }
 }

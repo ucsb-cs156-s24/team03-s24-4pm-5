@@ -23,6 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
+import edu.ucsb.cs156.example.entities.Restaurant;
 import edu.ucsb.cs156.example.entities.UCSBOrganization;
 import edu.ucsb.cs156.example.repositories.UCSBOrganizationRepository;
 import edu.ucsb.cs156.example.repositories.UserRepository;
@@ -44,7 +45,7 @@ public class UCSBOrganizationIT {
         public GrantedAuthoritiesService grantedAuthoritiesService;
 
         @Autowired
-        UCSBOrganizationRepository ucsbOrganizationsRepository;
+        UCSBOrganizationRepository organizationRepository;
 
         @Autowired
         public MockMvc mockMvc;
@@ -60,21 +61,21 @@ public class UCSBOrganizationIT {
         public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
                 // arrange
 
-                UCSBOrganization org = UCSBOrganization.builder()
-                                .orgCode("CD")
-                                .orgTranslation("Coder")
-                                .orgTranslationShort("CoderSB")
-                                .inactive(false)
-                                .build();
+                UCSBOrganization organization = UCSBOrganization.builder()
+                                    .orgCode("CD")
+                                    .orgTranslationShort("Coder")
+                                    .orgTranslation("CoderSB")
+                                    .inactive(false).build();
 
-                ucsbOrganizationsRepository.save(org);
+
+                organizationRepository.save(organization);
 
                 // act
                 MvcResult response = mockMvc.perform(get("/api/UCSBOrganization?orgCode=CD"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                String expectedJson = mapper.writeValueAsString(org);
+                String expectedJson = mapper.writeValueAsString(organization);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
         }
@@ -85,17 +86,16 @@ public class UCSBOrganizationIT {
                 // arrange
 
                 UCSBOrganization org = UCSBOrganization.builder()
-                .orgCode("CD")
-                .orgTranslation("Coder")
-                .orgTranslationShort("CoderSB")
-                .inactive(false)
-                .build();
-
+                                .orgCode("DS")
+                                .orgTranslationShort("Data Science")
+                                .orgTranslation("Data Science Club")
+                                .inactive(false).build();
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/UCSBOrganization/post?orgCode=CD&orgTranslationShort=CoderSB&orgTranslation=Coder&inactive=false")
+                                post("/api/UCSBOrganization/post?orgCode=DS&orgTranslationShort=Data%20Science&orgTranslation=Data%20Science%20Club&inactive=false")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
+
                 // assert
                 String expectedJson = mapper.writeValueAsString(org);
                 String responseString = response.getResponse().getContentAsString();
