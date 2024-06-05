@@ -1,4 +1,4 @@
-ckage edu.ucsb.cs156.example.integration;
+package edu.ucsb.cs156.example.integration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -44,10 +44,11 @@ public class UCSBOrganizationIT {
         public GrantedAuthoritiesService grantedAuthoritiesService;
 
         @Autowired
-        UCSBOrganizationRepository ucsbOrganizationRepository;
+        UCSBOrganizationRepository organizationRepository;
 
         @Autowired
         public MockMvc mockMvc;
+
         @Autowired
         public ObjectMapper mapper;
 
@@ -59,44 +60,45 @@ public class UCSBOrganizationIT {
         public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
                 // arrange
 
-                UCSBOrganization ucsbOrganization = UCSBOrganization.builder()
-                                .orgCode("CD")
-                                .orgTranslationShort("Coder")
-                                .orgTranslation("CoderSB")
+                UCSBOrganization organization = UCSBOrganization.builder()
+                                .orgCode("a")
+                                .orgTranslationShort("a")
+                                .orgTranslation("a")
                                 .inactive(false)
                                 .build();
 
-                ucsbOrganizationRepository.save(ucsbOrganization);
+                organizationRepository.save(organization);
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/UCSBOrganization?orgCode=CD"))
+                MvcResult response = mockMvc.perform(get("/api/UCSBOrganization?orgCode=a"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                String expectedJson = mapper.writeValueAsString(ucsbOrganization);
+                String expectedJson = mapper.writeValueAsString(organization);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
         }
 
         @WithMockUser(roles = { "ADMIN", "USER" })
         @Test
-        public void an_admin_user_can_post_a_new_org() throws Exception {
+        public void an_admin_user_can_post_a_new_organization() throws Exception {
                 // arrange
-                UCSBOrganization ucsbOrganization1 = UCSBOrganization.builder()
-                                .orgCode("CD")
-                                .orgTranslationShort("Coder")
-                                .orgTranslation("CoderSB")
+
+                UCSBOrganization organization1 = UCSBOrganization.builder()
+                                .orgCode("a")
+                                .orgTranslationShort("a")
+                                .orgTranslation("a")
                                 .inactive(false)
                                 .build();
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/UCSBOrganization/post?orgCode=CD&orgTranslationShort=Coder&orgTranslation=CoderSB&inactive=false")
+                                post("/api/UCSBOrganization/post?orgCode=a&orgTranslationShort=a&orgTranslation=a&inactive=false")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                String expectedJson = mapper.writeValueAsString(ucsbOrganization1);
+                String expectedJson = mapper.writeValueAsString(organization1);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
         }

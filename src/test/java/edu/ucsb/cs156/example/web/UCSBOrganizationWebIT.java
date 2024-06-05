@@ -18,39 +18,39 @@ import edu.ucsb.cs156.example.WebTestCase;
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 public class UCSBOrganizationWebIT extends WebTestCase {
     @Test
-    public void admin_user_can_create_edit_delete_org() throws Exception {
+    public void admin_user_can_create_edit_delete_organization() throws Exception {
         setupUser(true);
 
-        page.getByText("UCSB Organization").click();
+        page.getByText("UCSBOrganization").click();
 
-        page.getByText("Create UCSB Organization").click();
-        assertThat(page.getByText("Create New UCSB Organization")).isVisible();
-        page.getByTestId("UCSBOrganizationForm-orgCode").fill("CD");
-        page.getByTestId("UCSBOrganizationForm-orgTranslation").fill("CoderSB");
-        page.getByTestId("UCSBOrganizationForm-orgTranslationShort").fill("Coder");
+        page.getByText("Create UCSBOrganization").click();
+        assertThat(page.getByText("Create New UCSBOrganization")).isVisible();
+        page.getByTestId("UCSBOrganizationForm-orgCode").fill("a");
+        page.getByTestId("UCSBOrganizationForm-orgTranslationShort").fill("a");
+        page.getByTestId("UCSBOrganizationForm-orgTranslation").fill("a");
+        page.getByTestId("UCSBOrganizationForm-inactive").fill("false");
         page.getByTestId("UCSBOrganizationForm-submit").click();
 
-        assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgCode")).hasText("CD");
+        assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgTranslationShort"))
+                .hasText("a");
 
         page.getByTestId("UCSBOrganizationTable-cell-row-0-col-Edit-button").click();
-        assertThat(page.getByText("Edit UCSB Organization")).isVisible();
-        page.getByTestId("UCSBOrganizationForm-orgTranslation").fill("cc");
+        assertThat(page.getByText("Edit UCSBOrganization")).isVisible();
+        page.getByTestId("UCSBOrganizationForm-orgTranslationShort").fill("a");
+        page.getByTestId("UCSBOrganizationForm-inactive").fill("false");
         page.getByTestId("UCSBOrganizationForm-submit").click();
-
-        assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgTranslation")).hasText("cc");
-
+        assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgTranslationShort")).hasText("a");
         page.getByTestId("UCSBOrganizationTable-cell-row-0-col-Delete-button").click();
-
         assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-name")).not().isVisible();
     }
 
     @Test
-    public void regular_user_cannot_create_org() throws Exception {
+    public void regular_user_cannot_create_organization() throws Exception {
         setupUser(false);
 
-        page.getByText("UCSB Organization").click();
+        page.getByText("UCSBOrganization").click();
 
-        assertThat(page.getByText("Create UCSB Organization")).not().isVisible();
-        assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-orgCode")).not().isVisible();
+        assertThat(page.getByText("Create UCSBOrganization")).not().isVisible();
+        assertThat(page.getByTestId("UCSBOrganizationTable-cell-row-0-col-name")).not().isVisible();
     }
 }
